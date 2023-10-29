@@ -18,8 +18,8 @@ import java.util.List;
 public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_caegoria")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Long id;
 
     @Column(name = "nome", length = 60, nullable = false)
@@ -31,7 +31,7 @@ public class Categoria {
     @Column(name = "observacao")
     private String observcao;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
     private List<Produto> produto = new ArrayList<>();
 
 }

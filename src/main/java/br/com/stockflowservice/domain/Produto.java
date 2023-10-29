@@ -31,13 +31,12 @@ public class Produto {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @Column(name = "id_categoria")
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(fetch = FetchType.LAZY)
-    private Categoria categorias;
+    private Categoria categoria;
 
-    @Column(name = "id_estoque")
-    @ManyToOne(fetch = FetchType.LAZY)
-    private List<Estoque> estoques = new ArrayList<>();
+    @OneToOne(mappedBy = "produto", fetch = FetchType.LAZY)
+    private Estoque estoque;
 
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;

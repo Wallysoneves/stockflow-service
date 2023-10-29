@@ -44,7 +44,8 @@ public class Usuario {
     @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private List<Pedido> pedidos = new ArrayList<>();
+    @OneToOne
+    @JoinColumn(name = "usuario")
+    private Pedido pedido;
 
 }

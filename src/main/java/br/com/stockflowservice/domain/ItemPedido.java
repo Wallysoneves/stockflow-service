@@ -1,11 +1,10 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.id.ItemPedidoId;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -17,13 +16,8 @@ import java.util.Set;
 @Table(name = "itens_pedidos")
 public class ItemPedido {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "id_pedido")
-    private Set<Pedido> pedidos = new HashSet<>();
-
-    @OneToMany(fetch = FetchType.LAZY)
-    @Column(name = "id_produto")
-    private Produto produto;
+    @EmbeddedId
+    private ItemPedidoId id;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;

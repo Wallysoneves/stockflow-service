@@ -21,16 +21,16 @@ import java.util.Set;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "pedido_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pedido")
     private Long id;
 
-    @Column(name = "id_usuario", nullable = false)
-    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @OneToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private ItemPedido itemPedido;
+    private Set<ItemPedido> itensPedidos = new HashSet<>();
 
     @Column(name = "data_inicio", nullable = false)
     private LocalDateTime dataInicio;

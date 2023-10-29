@@ -21,8 +21,8 @@ public class Estoque {
     @Column(name = "id_estoque")
     private Long id;
 
-    @Column(name = "id_produto")
-    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_produto")
+    @OneToOne(fetch = FetchType.LAZY)
     private Produto produto;
 
     @Column(name = "quantidade", nullable = false)
