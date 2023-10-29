@@ -26,7 +26,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto buscarUmaProduto(Long id) throws Exception {
+    public Produto buscarUmProduto(Long id) throws Exception {
         return produtoRepository.findById(id).orElseThrow(() -> new Exception("Produto não encontrada!"));
     }
 
@@ -42,13 +42,13 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public void deletarProduto(Long id) throws Exception {
-        Produto produto = this.buscarUmaProduto(id);
+        Produto produto = this.buscarUmProduto(id);
         produtoRepository.delete(produto);
     }
 
     @Override
     public void deletarProduto(Produto produto) throws Exception {
-        Produto produtoEncontrado = this.buscarUmaProduto(produto.getId());
+        Produto produtoEncontrado = this.buscarUmProduto(produto.getId());
         produtoRepository.delete(produtoEncontrado);
     }
 }

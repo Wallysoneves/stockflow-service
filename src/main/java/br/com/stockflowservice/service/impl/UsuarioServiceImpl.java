@@ -26,7 +26,7 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario buscarUmaUsuario(Long id) throws Exception {
+    public Usuario buscarUmUsuario(Long id) throws Exception {
         return UsuarioRepository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrada!"));
     }
 
@@ -42,13 +42,13 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void deletarUsuario(Long id) throws Exception {
-        Usuario usuario = this.buscarUmaUsuario(id);
+        Usuario usuario = this.buscarUmUsuario(id);
         UsuarioRepository.delete(usuario);
     }
 
     @Override
     public void deletarUsuario(Usuario usuario) throws Exception {
-        Usuario usuarioEncontrado = this.buscarUmaUsuario(usuario.getId());
+        Usuario usuarioEncontrado = this.buscarUmUsuario(usuario.getId());
         UsuarioRepository.delete(usuarioEncontrado);
     }
 }

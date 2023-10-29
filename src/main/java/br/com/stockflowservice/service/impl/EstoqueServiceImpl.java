@@ -26,7 +26,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public Estoque buscarUmaEstoque(Long id) throws Exception {
+    public Estoque buscarUmEstoque(Long id) throws Exception {
         return EstoqueRepository.findById(id).orElseThrow(() -> new Exception("Estoque não encontrada!"));
     }
 
@@ -42,13 +42,13 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public void deletarEstoque(Long id) throws Exception {
-        Estoque estoque = this.buscarUmaEstoque(id);
+        Estoque estoque = this.buscarUmEstoque(id);
         EstoqueRepository.delete(estoque);
     }
 
     @Override
     public void deletarEstoque(Estoque estoque) throws Exception {
-        Estoque estoqueEncontrado = this.buscarUmaEstoque(estoque.getId());
+        Estoque estoqueEncontrado = this.buscarUmEstoque(estoque.getId());
         EstoqueRepository.delete(estoqueEncontrado);
     }
 }

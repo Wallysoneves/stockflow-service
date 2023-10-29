@@ -1,10 +1,10 @@
-package br.com.stockflowservice.service;
+package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Usuario;
 
 import java.util.List;
 
-public interface UsuarioService {
+public interface UsuarioResource {
 
     Usuario criarUsuario(Usuario Usuario);
 

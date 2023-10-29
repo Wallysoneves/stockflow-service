@@ -8,7 +8,6 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class PedidoServiceImpl implements PedidoService {
@@ -27,7 +26,7 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido buscarUmaPedido(Long id) throws Exception {
+    public Pedido buscarUmPedido(Long id) throws Exception {
         return PedidoRepository.findById(id).orElseThrow(() -> new Exception("Pedido não encontrada!"));
     }
 
@@ -42,14 +41,14 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public void deletarPedidoPorId(Long id) throws Exception {
-        Pedido pedido = this.buscarUmaPedido(id);
+    public void deletarPedido(Long id) throws Exception {
+        Pedido pedido = this.buscarUmPedido(id);
         PedidoRepository.delete(pedido);
     }
 
     @Override
     public void deletarPedido(Pedido pedido) throws Exception {
-        Pedido pedidoEncontrado = this.buscarUmaPedido(pedido.getId());
+        Pedido pedidoEncontrado = this.buscarUmPedido(pedido.getId());
         PedidoRepository.delete(pedidoEncontrado);
     }
 }

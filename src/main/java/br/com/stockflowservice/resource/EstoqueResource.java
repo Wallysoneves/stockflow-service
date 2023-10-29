@@ -1,10 +1,10 @@
-package br.com.stockflowservice.service;
+package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Estoque;
 
 import java.util.List;
 
-public interface EstoqueService {
+public interface EstoqueResource {
 
     Estoque criarEstoque(Estoque Estoque);
 

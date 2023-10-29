@@ -1,10 +1,10 @@
-package br.com.stockflowservice.service;
+package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Pedido;
 
 import java.util.List;
 
-public interface PedidoService {
+public interface PedidoResource {
 
     Pedido criarPedido(Pedido Pedido);
 

@@ -1,10 +1,10 @@
-package br.com.stockflowservice.service;
+package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Produto;
 
 import java.util.List;
 
-public interface ProdutoService {
+public interface ProdutoResource {
 
     Produto criarProduto(Produto Produto);
 

@@ -27,7 +27,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     }
 
     @Override
-    public ItemPedido buscarUmaItemPedido(ItemPedidoId id) throws Exception {
+    public ItemPedido buscarUmItemPedido(ItemPedidoId id) throws Exception {
         return ItemPedidoRepository.findById(id).orElseThrow(() -> new Exception("ItemPedido não encontrada!"));
     }
 
@@ -43,13 +43,13 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
 
     @Override
     public void deletarItemPedido(ItemPedidoId id) throws Exception {
-        ItemPedido itemPedido = this.buscarUmaItemPedido(id);
+        ItemPedido itemPedido = this.buscarUmItemPedido(id);
         ItemPedidoRepository.delete(itemPedido);
     }
 
     @Override
     public void deletarItemPedido(ItemPedido itemPedido) throws Exception {
-        ItemPedido itemPedidoEncontrado = this.buscarUmaItemPedido(itemPedido.getId());
+        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedido.getId());
         ItemPedidoRepository.delete(itemPedidoEncontrado);
     }
 }
