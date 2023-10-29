@@ -14,7 +14,7 @@ public interface PedidoService {
 
     Pedido alterarPedido(Pedido Pedido) throws Exception;
 
-    void deletarPedido(Long id) throws Exception;
+    void deletarPedidoPorId(Long id) throws Exception;
 
     void deletarPedido(Pedido Pedido) throws Exception;
 }
