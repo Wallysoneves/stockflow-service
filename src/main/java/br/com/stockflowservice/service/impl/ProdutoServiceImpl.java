@@ -1,6 +1,7 @@
 package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Produto;
+import br.com.stockflowservice.domain.dto.ProdutoDTO;
 import br.com.stockflowservice.repository.ProdutoRepository;
 import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     private ProdutoRepository produtoRepository;
 
     @Override
-    public Produto criarProduto(Produto produto) {
+    public Produto criarProduto(ProdutoDTO produtoDTO) {
+        Produto produto = Produto.convert(produtoDTO);
         return produtoRepository.save(produto);
     }
 
@@ -31,7 +33,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto alterarProduto(Produto produto) throws Exception {
+    public Produto alterarProduto(ProdutoDTO produtoDTO) throws Exception {
+        Produto produto = Produto.convert(produtoDTO);
 
         if (produtoRepository.exists(Example.of(produto))) {
             return produtoRepository.save(produto);
@@ -47,8 +50,8 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public void deletarProduto(Produto produto) throws Exception {
-        Produto produtoEncontrado = this.buscarUmProduto(produto.getId());
+    public void deletarProduto(ProdutoDTO produto) throws Exception {
+        Produto produtoEncontrado = this.buscarUmProduto(produto.id());
         produtoRepository.delete(produtoEncontrado);
     }
 }

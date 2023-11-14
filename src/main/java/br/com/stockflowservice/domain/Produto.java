@@ -1,7 +1,12 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.ProdutoDTO;
+import br.com.stockflowservice.domain.dto.UsuarioDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -25,7 +30,7 @@ public class Produto {
     @Column(name = "id_produto")
     private Long id;
 
-    @Column(name = "nome", length = 255, nullable = false)
+    @Column(name = "nome", length = 254, nullable = false)
     private String nome;
 
     @Column(name = "descricao", nullable = false)
@@ -33,6 +38,7 @@ public class Produto {
 
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Categoria categoria;
 
     @OneToOne(mappedBy = "produto", fetch = FetchType.LAZY)
@@ -52,5 +58,10 @@ public class Produto {
 
     @Column(name = "observacao")
     private String observacao;
+
+    public static Produto convert(ProdutoDTO produtoDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(produtoDTO, Produto.class);
+    }
 
 }

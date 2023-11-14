@@ -1,7 +1,13 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.PedidoDTO;
+import br.com.stockflowservice.domain.dto.ProdutoDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -24,10 +30,11 @@ public class Pedido {
     private Long id;
 
     @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<ItemPedido> itensPedidos = new HashSet<>();
 
     @Column(name = "data_inicio", nullable = false)
@@ -38,4 +45,9 @@ public class Pedido {
 
     @Column(name = "situacao", length = 1)
     private String situacao;
+
+    public static Pedido convert(PedidoDTO pedidoDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(pedidoDTO, Pedido.class);
+    }
 }

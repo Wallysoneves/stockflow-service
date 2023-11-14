@@ -1,6 +1,8 @@
 package br.com.stockflowservice.resource.impl;
 
 import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
+import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
 import br.com.stockflowservice.resource.ItemPedidoResource;
 import br.com.stockflowservice.service.ItemPedidoService;
@@ -9,6 +11,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,24 +31,24 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ItemPedido criarItemPedido(@Valid @RequestBody ItemPedido itemPedido) {
-        return itemPedidoService.criarItemPedido(itemPedido);
+    public ResponseEntity<ItemPedido> criarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
+        return ResponseEntity.ok(itemPedidoService.criarItemPedido(itemPedido));
     }
 
     @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public List<ItemPedido> buscarTodasItemPedido() {
-        return itemPedidoService.buscarTodasItemPedido();
+    public ResponseEntity<List<ItemPedido>> buscarTodasItemPedido() {
+        return ResponseEntity.ok(itemPedidoService.buscarTodasItemPedido());
     }
 
     @Override
     @GetMapping(value = "/id",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ItemPedido buscarUmItemPedido(@Valid @RequestBody ItemPedidoId id) throws Exception {
-        return itemPedidoService.buscarUmItemPedido(id);
+    public ResponseEntity<ItemPedido> buscarUmItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) throws Exception {
+        return ResponseEntity.ok(itemPedidoService.buscarUmItemPedido(id));
     }
 
     @Override
@@ -53,13 +56,13 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ItemPedido alterarItemPedido(@Valid @RequestBody ItemPedido itemPedido) throws Exception {
-        return itemPedidoService.alterarItemPedido(itemPedido);
+    public ResponseEntity<ItemPedido> alterarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) throws Exception {
+        return ResponseEntity.ok(itemPedidoService.alterarItemPedido(itemPedido));
     }
 
     @Override
     @DeleteMapping(value = "/id")
-    public void deletarItemPedido(@Valid @RequestBody ItemPedidoId id) throws Exception {
+    public void deletarItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) throws Exception {
         itemPedidoService.deletarItemPedido(id);
     }
 
@@ -67,7 +70,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarItemPedido(@Valid @RequestBody ItemPedido itemPedido) throws Exception {
+    public void deletarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) throws Exception {
         itemPedidoService.deletarItemPedido(itemPedido);
     }
 }

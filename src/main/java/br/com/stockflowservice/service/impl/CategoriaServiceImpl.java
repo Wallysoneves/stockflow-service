@@ -2,13 +2,16 @@ package br.com.stockflowservice.service.impl;
 
 
 import br.com.stockflowservice.domain.Categoria;
+import br.com.stockflowservice.domain.dto.CategoriaDTO;
 import br.com.stockflowservice.repository.CategoriaRepository;
 import br.com.stockflowservice.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class CategoriaServiceImpl implements CategoriaService {
@@ -17,11 +20,14 @@ public class CategoriaServiceImpl implements CategoriaService {
     private CategoriaRepository categoriaRepository;
 
     @Override
-    public Categoria criarCategoria(Categoria categoria) {
+    public Categoria criarCategoria(CategoriaDTO categoriaDTO) {
+        Categoria categoria = new Categoria(categoriaDTO);
+        
         return categoriaRepository.save(categoria);
     }
 
     @Override
+    @Transactional
     public List<Categoria> buscarTodasCategoria() {
         return categoriaRepository.findAll();
     }
@@ -32,13 +38,12 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria alterarCategoria(Categoria categoria) throws Exception {
+    public Categoria alterarCategoria(CategoriaDTO categoriaDTO) throws Exception {
+        Categoria categoria = this.buscarUmaCategoria(categoriaDTO.id());
+        categoria.setNome(categoriaDTO.nome());
+        categoria.setObservacao(categoriaDTO.observacao());
 
-        if (categoriaRepository.exists(Example.of(categoria))) {
-            return categoriaRepository.save(categoria);
-        } else {
-            throw new Exception("Categoria não encontrada!");
-        }
+        return categoriaRepository.save(categoria);
     }
 
     @Override
@@ -48,7 +53,9 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public void deletarCategoria(Categoria categoria) throws Exception {
+    public void deletarCategoria(CategoriaDTO categoriaDTO) throws Exception {
+        Categoria categoria = new Categoria(categoriaDTO);
+
         Categoria categoriaBuscada = this.buscarUmaCategoria(categoria.getId());
         categoriaRepository.delete(categoriaBuscada);
     }

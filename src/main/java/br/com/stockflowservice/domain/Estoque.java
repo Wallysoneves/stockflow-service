@@ -1,7 +1,11 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
+import br.com.stockflowservice.domain.dto.PedidoDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,6 +27,7 @@ public class Estoque {
 
     @JoinColumn(name = "id_produto")
     @OneToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Produto produto;
 
     @Column(name = "quantidade", nullable = false)
@@ -40,4 +45,8 @@ public class Estoque {
     @Column(name = "situacao", length = 1)
     private String situacao;
 
+    public static Estoque convert(EstoqueDTO estoqueDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(estoqueDTO, Estoque.class);
+    }
 }

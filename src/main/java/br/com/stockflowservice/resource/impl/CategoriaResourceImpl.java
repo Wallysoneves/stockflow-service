@@ -1,6 +1,7 @@
 package br.com.stockflowservice.resource.impl;
 
 import br.com.stockflowservice.domain.Categoria;
+import br.com.stockflowservice.domain.dto.CategoriaDTO;
 import br.com.stockflowservice.resource.CategoriaResource;
 import br.com.stockflowservice.service.CategoriaService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,24 +29,24 @@ public class CategoriaResourceImpl implements CategoriaResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Categoria criarCategoria(@Valid @RequestBody Categoria categoria) {
-        return categoriaService.criarCategoria(categoria);
+    public ResponseEntity<Categoria> criarCategoria(@Valid @RequestBody CategoriaDTO categoria) {
+        return ResponseEntity.ok(categoriaService.criarCategoria(categoria));
     }
 
     @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public List<Categoria> buscarTodasCategoria() {
-        return categoriaService.buscarTodasCategoria();
+    public ResponseEntity<List<Categoria>> buscarTodasCategoria() {
+        return ResponseEntity.ok(categoriaService.buscarTodasCategoria());
     }
 
     @Override
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Categoria buscarUmaCategoria(@PathVariable("id") Long id) throws Exception {
-        return categoriaService.buscarUmaCategoria(id);
+    public ResponseEntity<Categoria> buscarUmaCategoria(@PathVariable("id") Long id) throws Exception {
+        return ResponseEntity.ok(categoriaService.buscarUmaCategoria(id));
     }
 
     @Override
@@ -52,8 +54,8 @@ public class CategoriaResourceImpl implements CategoriaResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Categoria alterarCategoria(@Valid @RequestBody Categoria categoria) throws Exception {
-        return categoriaService.alterarCategoria(categoria);
+    public ResponseEntity<Categoria> alterarCategoria(@Valid @RequestBody  CategoriaDTO categoria) throws Exception {
+        return ResponseEntity.ok(categoriaService.alterarCategoria(categoria));
     }
 
     @Override
@@ -66,7 +68,7 @@ public class CategoriaResourceImpl implements CategoriaResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarCategoria(@Valid @RequestBody Categoria categoria) throws Exception {
+    public void deletarCategoria(@Valid @RequestBody  CategoriaDTO categoria) throws Exception {
         categoriaService.deletarCategoria(categoria);
     }
 }

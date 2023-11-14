@@ -1,20 +1,22 @@
 package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Produto;
+import br.com.stockflowservice.domain.dto.ProdutoDTO;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface ProdutoResource {
 
-    Produto criarProduto(Produto Produto);
+    ResponseEntity<Produto> criarProduto(ProdutoDTO Produto);
 
-    List<Produto> buscarTodasProduto();
+    ResponseEntity<List<Produto>> buscarTodasProduto();
 
-    Produto buscarUmProduto(Long id) throws Exception;
+    ResponseEntity<Produto> buscarUmProduto(Long id) throws Exception;
 
-    Produto alterarProduto(Produto Produto) throws Exception;
+    ResponseEntity<Produto> alterarProduto(ProdutoDTO Produto) throws Exception;
 
     void deletarProduto(Long id) throws Exception;
 
-    void deletarProduto(Produto Produto) throws Exception;
+    void deletarProduto(ProdutoDTO Produto) throws Exception;
 }

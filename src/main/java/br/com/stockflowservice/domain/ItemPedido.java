@@ -1,8 +1,11 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
+import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
@@ -27,4 +30,9 @@ public class ItemPedido {
 
     @Column(name = "total_item", nullable = false)
     private BigDecimal total;
+
+    public static ItemPedido convert(ItemPedidoDTO itemPedidoDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(itemPedidoDTO, ItemPedido.class);
+    }
 }

@@ -1,6 +1,8 @@
 package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
+import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
 import br.com.stockflowservice.repository.ItemPedidoRepository;
 import br.com.stockflowservice.service.ItemPedidoService;
@@ -17,7 +19,8 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     private ItemPedidoRepository ItemPedidoRepository;
 
     @Override
-    public ItemPedido criarItemPedido(ItemPedido itemPedido) {
+    public ItemPedido criarItemPedido(ItemPedidoDTO itemPedidoDTO) {
+        ItemPedido itemPedido = ItemPedido.convert(itemPedidoDTO);
         return ItemPedidoRepository.save(itemPedido);
     }
 
@@ -27,13 +30,14 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     }
 
     @Override
-    public ItemPedido buscarUmItemPedido(ItemPedidoId id) throws Exception {
-        return ItemPedidoRepository.findById(id).orElseThrow(() -> new Exception("ItemPedido não encontrada!"));
+    public ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id) throws Exception {
+        ItemPedidoId itemPedidoId = ItemPedidoId.convert(id);
+        return ItemPedidoRepository.findById(itemPedidoId).orElseThrow(() -> new Exception("ItemPedido não encontrada!"));
     }
 
     @Override
-    public ItemPedido alterarItemPedido(ItemPedido itemPedido) throws Exception {
-
+    public ItemPedido alterarItemPedido(ItemPedidoDTO itemPedidoDTO) throws Exception {
+        ItemPedido itemPedido = ItemPedido.convert(itemPedidoDTO);
         if (ItemPedidoRepository.exists(Example.of(itemPedido))) {
             return ItemPedidoRepository.save(itemPedido);
         } else {
@@ -42,14 +46,15 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     }
 
     @Override
-    public void deletarItemPedido(ItemPedidoId id) throws Exception {
+    public void deletarItemPedido(ItemPedidoIdDTO id) throws Exception {
         ItemPedido itemPedido = this.buscarUmItemPedido(id);
         ItemPedidoRepository.delete(itemPedido);
     }
 
     @Override
-    public void deletarItemPedido(ItemPedido itemPedido) throws Exception {
-        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedido.getId());
+    public void deletarItemPedido(ItemPedidoDTO itemPedidoDTO) throws Exception {
+
+        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedidoDTO.id());
         ItemPedidoRepository.delete(itemPedidoEncontrado);
     }
 }

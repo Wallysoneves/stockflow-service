@@ -1,6 +1,7 @@
 package br.com.stockflowservice.resource.impl;
 
 import br.com.stockflowservice.domain.Usuario;
+import br.com.stockflowservice.domain.dto.UsuarioDTO;
 import br.com.stockflowservice.resource.UsuarioResource;
 import br.com.stockflowservice.service.UsuarioService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,24 +29,24 @@ public class UsuarioResourceImpl implements UsuarioResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Usuario criarUsuario(@Valid @RequestBody Usuario usuario) {
-        return usuarioService.criarUsuario(usuario);
+    public ResponseEntity<Usuario> criarUsuario(@Valid @RequestBody UsuarioDTO usuario) {
+        return ResponseEntity.ok(usuarioService.criarUsuario(usuario));
     }
 
     @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public List<Usuario> buscarTodasUsuario() {
-        return usuarioService.buscarTodasUsuario();
+    public ResponseEntity<List<Usuario>> buscarTodasUsuario() {
+        return ResponseEntity.ok(usuarioService.buscarTodasUsuario());
     }
 
     @Override
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Usuario buscarUmUsuario(@PathVariable("id") Long id) throws Exception {
-        return usuarioService.buscarUmUsuario(id);
+    public ResponseEntity<Usuario> buscarUmUsuario(@PathVariable("id") Long id) throws Exception {
+        return ResponseEntity.ok(usuarioService.buscarUmUsuario(id));
     }
 
     @Override
@@ -52,8 +54,8 @@ public class UsuarioResourceImpl implements UsuarioResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Usuario alterarUsuario(@Valid @RequestBody Usuario usuario) throws Exception {
-        return usuarioService.alterarUsuario(usuario);
+    public ResponseEntity<Usuario> alterarUsuario(@Valid @RequestBody UsuarioDTO usuario) throws Exception {
+        return ResponseEntity.ok(usuarioService.alterarUsuario(usuario));
     }
 
     @Override
@@ -66,7 +68,7 @@ public class UsuarioResourceImpl implements UsuarioResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarUsuario(@Valid @RequestBody Usuario Usuario) throws Exception {
-        usuarioService.deletarUsuario(Usuario);
+    public void deletarUsuario(@Valid @RequestBody UsuarioDTO usuario) throws Exception {
+        usuarioService.deletarUsuario(usuario);
     }
 }

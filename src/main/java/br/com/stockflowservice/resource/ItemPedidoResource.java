@@ -1,21 +1,24 @@
 package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
+import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface ItemPedidoResource {
 
-    ItemPedido criarItemPedido(ItemPedido ItemPedido);
+    ResponseEntity<ItemPedido> criarItemPedido(ItemPedidoDTO ItemPedido);
 
-    List<ItemPedido> buscarTodasItemPedido();
+    ResponseEntity<List<ItemPedido>> buscarTodasItemPedido();
 
-    ItemPedido buscarUmItemPedido(ItemPedidoId id) throws Exception;
+    ResponseEntity<ItemPedido> buscarUmItemPedido(ItemPedidoIdDTO id) throws Exception;
 
-    ItemPedido alterarItemPedido(ItemPedido ItemPedido) throws Exception;
+    ResponseEntity<ItemPedido> alterarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
 
-    void deletarItemPedido(ItemPedidoId id) throws Exception;
+    void deletarItemPedido(ItemPedidoIdDTO id) throws Exception;
 
-    void deletarItemPedido(ItemPedido ItemPedido) throws Exception;
+    void deletarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
 }

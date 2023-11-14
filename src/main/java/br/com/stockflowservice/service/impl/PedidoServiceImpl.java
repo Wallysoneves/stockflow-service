@@ -1,6 +1,7 @@
 package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Pedido;
+import br.com.stockflowservice.domain.dto.PedidoDTO;
 import br.com.stockflowservice.repository.PedidoRepository;
 import br.com.stockflowservice.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,8 @@ public class PedidoServiceImpl implements PedidoService {
     private PedidoRepository PedidoRepository;
 
     @Override
-    public Pedido criarPedido(Pedido pedido) {
+    public Pedido criarPedido(PedidoDTO pedidoDTO) {
+        Pedido pedido = Pedido.convert(pedidoDTO);
         return PedidoRepository.save(pedido);
     }
 
@@ -31,8 +33,8 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido alterarPedido(Pedido pedido) throws Exception {
-
+    public Pedido alterarPedido(PedidoDTO pedidoDTO) throws Exception {
+        Pedido pedido = Pedido.convert(pedidoDTO);
         if (PedidoRepository.exists(Example.of(pedido))) {
             return PedidoRepository.save(pedido);
         } else {
@@ -47,8 +49,8 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public void deletarPedido(Pedido pedido) throws Exception {
-        Pedido pedidoEncontrado = this.buscarUmPedido(pedido.getId());
+    public void deletarPedido(PedidoDTO pedido) throws Exception {
+        Pedido pedidoEncontrado = this.buscarUmPedido(pedido.id());
         PedidoRepository.delete(pedidoEncontrado);
     }
 }

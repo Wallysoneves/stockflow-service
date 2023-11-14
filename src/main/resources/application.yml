@@ -23,6 +23,9 @@ spring:
     location: classpath:/banner.txt
 
   jpa:
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: 'true'
     open-in-view: false
     hibernate:
       ddl-auto: update

@@ -1,5 +1,8 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.CategoriaDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,6 +20,14 @@ import java.util.List;
 @Table(name = "categorias")
 public class Categoria {
 
+    public Categoria (CategoriaDTO categoriaDTO) {
+        this.id = categoriaDTO.id();
+        this.nome = categoriaDTO.nome();
+        this.dataCadastro = LocalDateTime.now();
+        this.observacao = categoriaDTO.observacao();
+        this.produto = new ArrayList<>();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
@@ -29,9 +40,10 @@ public class Categoria {
     private LocalDateTime dataCadastro;
 
     @Column(name = "observacao")
-    private String observcao;
+    private String observacao;
 
     @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Produto> produto = new ArrayList<>();
 
 }

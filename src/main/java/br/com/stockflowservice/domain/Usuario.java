@@ -1,7 +1,11 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.UsuarioDTO;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
+import org.modelmapper.ModelMapper;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -44,8 +48,13 @@ public class Usuario {
     @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 
-    @OneToOne
-    @JoinColumn(name = "usuario")
-    private Pedido pedido;
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<Pedido> pedidos = new ArrayList<>();
+
+    public static Usuario convert(UsuarioDTO usuarioDTO) {
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(usuarioDTO, Usuario.class);
+    }
 
 }

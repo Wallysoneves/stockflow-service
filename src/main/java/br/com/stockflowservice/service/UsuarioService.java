@@ -1,20 +1,21 @@
 package br.com.stockflowservice.service;
 
 import br.com.stockflowservice.domain.Usuario;
+import br.com.stockflowservice.domain.dto.UsuarioDTO;
 
 import java.util.List;
 
 public interface UsuarioService {
 
-    Usuario criarUsuario(Usuario Usuario);
+    Usuario criarUsuario(UsuarioDTO Usuario);
 
     List<Usuario> buscarTodasUsuario();
 
     Usuario buscarUmUsuario(Long id) throws Exception;
 
-    Usuario alterarUsuario(Usuario Usuario) throws Exception;
+    Usuario alterarUsuario(UsuarioDTO Usuario) throws Exception;
 
     void deletarUsuario(Long id) throws Exception;
 
-    void deletarUsuario(Usuario Usuario) throws Exception;
+    void deletarUsuario(UsuarioDTO Usuario) throws Exception;
 }

@@ -1,6 +1,7 @@
 package br.com.stockflowservice.resource.impl;
 
 import br.com.stockflowservice.domain.Pedido;
+import br.com.stockflowservice.domain.dto.PedidoDTO;
 import br.com.stockflowservice.resource.PedidoResource;
 import br.com.stockflowservice.service.PedidoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -8,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,24 +29,24 @@ public class PedidoResourceImpl implements PedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Pedido criarPedido(@Valid @RequestBody Pedido pedido) {
-        return pedidoService.criarPedido(pedido);
+    public ResponseEntity<Pedido> criarPedido(@Valid @RequestBody PedidoDTO pedido) {
+        return ResponseEntity.ok(pedidoService.criarPedido(pedido));
     }
 
     @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public List<Pedido> buscarTodasPedido() {
-        return pedidoService.buscarTodasPedido();
+    public ResponseEntity<List<Pedido>> buscarTodasPedido() {
+        return ResponseEntity.ok(pedidoService.buscarTodasPedido());
     }
 
     @Override
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Pedido buscarUmPedido(@PathVariable("id") Long id) throws Exception {
-        return pedidoService.buscarUmPedido(id);
+    public ResponseEntity<Pedido> buscarUmPedido(@PathVariable("id") Long id) throws Exception {
+        return ResponseEntity.ok(pedidoService.buscarUmPedido(id));
     }
 
     @Override
@@ -52,8 +54,8 @@ public class PedidoResourceImpl implements PedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Pedido alterarPedido(@Valid @RequestBody Pedido pedido) throws Exception {
-        return pedidoService.alterarPedido(pedido);
+    public ResponseEntity<Pedido> alterarPedido(@Valid @RequestBody PedidoDTO pedido) throws Exception {
+        return ResponseEntity.ok(pedidoService.alterarPedido(pedido));
     }
 
     @Override
@@ -66,7 +68,7 @@ public class PedidoResourceImpl implements PedidoResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarPedido(@Valid @RequestBody Pedido Pedido) throws Exception {
+    public void deletarPedido(@Valid @RequestBody PedidoDTO Pedido) throws Exception {
         pedidoService.deletarPedido(Pedido);
     }
 }

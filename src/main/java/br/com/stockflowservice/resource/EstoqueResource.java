@@ -1,18 +1,19 @@
 package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Estoque;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
 public interface EstoqueResource {
 
-    Estoque criarEstoque(Estoque Estoque);
+    ResponseEntity<Estoque> criarEstoque(Estoque Estoque);
 
-    List<Estoque> buscarTodasEstoque();
+    ResponseEntity<List<Estoque>> buscarTodasEstoque();
 
-    Estoque buscarUmEstoque(Long id) throws Exception;
+    ResponseEntity<Estoque> buscarUmEstoque(Long id) throws Exception;
 
-    Estoque alterarEstoque(Estoque Estoque) throws Exception;
+    ResponseEntity<Estoque> alterarEstoque(Estoque Estoque) throws Exception;
 
     void deletarEstoque(Long id) throws Exception;
 

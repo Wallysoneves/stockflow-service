@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.tags.Tags;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,24 +28,24 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Estoque criarEstoque(@Valid @RequestBody Estoque estoque) {
-        return estoqueService.criarEstoque(estoque);
+    public ResponseEntity<Estoque> criarEstoque(@Valid @RequestBody Estoque estoque) {
+        return ResponseEntity.ok(estoqueService.criarEstoque(estoque));
     }
 
     @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public List<Estoque> buscarTodasEstoque() {
-        return estoqueService.buscarTodasEstoque();
+    public ResponseEntity<List<Estoque>> buscarTodasEstoque() {
+        return ResponseEntity.ok(estoqueService.buscarTodasEstoque());
     }
 
     @Override
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Estoque buscarUmEstoque(@PathVariable("id") Long id) throws Exception {
-        return estoqueService.buscarUmEstoque(id);
+    public ResponseEntity<Estoque> buscarUmEstoque(@PathVariable("id") Long id) throws Exception {
+        return ResponseEntity.ok(estoqueService.buscarUmEstoque(id));
     }
 
     @Override
@@ -52,8 +53,8 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public Estoque alterarEstoque(@Valid @RequestBody Estoque estoque) throws Exception {
-        return estoqueService.alterarEstoque(estoque);
+    public ResponseEntity<Estoque> alterarEstoque(@Valid @RequestBody Estoque estoque) throws Exception {
+        return ResponseEntity.ok(estoqueService.alterarEstoque(estoque));
     }
 
     @Override

@@ -1,20 +1,21 @@
 package br.com.stockflowservice.service;
 
 import br.com.stockflowservice.domain.Produto;
+import br.com.stockflowservice.domain.dto.ProdutoDTO;
 
 import java.util.List;
 
 public interface ProdutoService {
 
-    Produto criarProduto(Produto Produto);
+    Produto criarProduto(ProdutoDTO Produto);
 
     List<Produto> buscarTodasProduto();
 
     Produto buscarUmProduto(Long id) throws Exception;
 
-    Produto alterarProduto(Produto Produto) throws Exception;
+    Produto alterarProduto(ProdutoDTO Produto) throws Exception;
 
     void deletarProduto(Long id) throws Exception;
 
-    void deletarProduto(Produto Produto) throws Exception;
+    void deletarProduto(ProdutoDTO Produto) throws Exception;
 }
