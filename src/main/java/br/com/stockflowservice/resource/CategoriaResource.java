@@ -2,6 +2,7 @@ package br.com.stockflowservice.resource;
 
 import br.com.stockflowservice.domain.Categoria;
 import br.com.stockflowservice.domain.dto.CategoriaDTO;
+import br.com.stockflowservice.exception.StockFlowException;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
@@ -52,7 +53,7 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
-    ResponseEntity<Categoria> buscarUmaCategoria(Long id) throws Exception;
+    ResponseEntity<Categoria> buscarUmaCategoria(Long id);
 
     @Operation(
             summary = "Alterar uma  categoria",
@@ -65,7 +66,7 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
-    ResponseEntity<Categoria> alterarCategoria(CategoriaDTO categoria) throws Exception;
+    ResponseEntity<Categoria> alterarCategoria(CategoriaDTO categoria);
 
     @Operation(
             summary = "Deletar uma categoria",
@@ -78,7 +79,7 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
-    void deletarCategoria(Long id) throws Exception;
+    void deletarCategoria(Long id);
 
     @Operation(
             summary = "Deletar uma categoria",
@@ -91,7 +92,7 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
-    void deletarCategoria(CategoriaDTO categoria) throws Exception;
+    void deletarCategoria(CategoriaDTO categoria);
 
     @Operation(
             summary = "Recupera uma categoria",
@@ -104,5 +105,5 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
-    ResponseEntity<Categoria> buscarCategoriaNome(String nomeCategoria) throws Exception;
+    ResponseEntity<Categoria> buscarCategoriaNome(String nomeCategoria);
 }

@@ -29,7 +29,7 @@ public class ProdutoResourceImpl implements ProdutoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Produto> criarProduto(@Valid @RequestBody ProdutoDTO produto) throws Exception {
+    public ResponseEntity<Produto> criarProduto(@Valid @RequestBody ProdutoDTO produto) {
         return ResponseEntity.ok(produtoService.criarProduto(produto));
     }
 
@@ -45,7 +45,7 @@ public class ProdutoResourceImpl implements ProdutoResource {
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Produto> buscarUmProduto(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<Produto> buscarUmProduto(@PathVariable("id") Long id) {
         return ResponseEntity.ok(produtoService.buscarUmProduto(id));
     }
 
@@ -54,13 +54,13 @@ public class ProdutoResourceImpl implements ProdutoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Produto> alterarProduto(@Valid @RequestBody ProdutoDTO produto) throws Exception {
+    public ResponseEntity<Produto> alterarProduto(@Valid @RequestBody ProdutoDTO produto) {
         return ResponseEntity.ok(produtoService.alterarProduto(produto));
     }
 
     @Override
     @DeleteMapping(value = "/{id}")
-    public void deletarProduto(@PathVariable("id") Long id) throws Exception {
+    public void deletarProduto(@PathVariable("id") Long id) {
         produtoService.deletarProduto(id);
     }
 
@@ -68,7 +68,7 @@ public class ProdutoResourceImpl implements ProdutoResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarProduto(@Valid @RequestBody ProdutoDTO produto) throws Exception {
+    public void deletarProduto(@Valid @RequestBody ProdutoDTO produto) {
         produtoService.deletarProduto(produto);
     }
 }

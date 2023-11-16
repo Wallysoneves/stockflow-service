@@ -2,6 +2,7 @@ package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Pedido;
 import br.com.stockflowservice.domain.dto.PedidoDTO;
+import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.PedidoRepository;
 import br.com.stockflowservice.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,28 +29,24 @@ public class PedidoServiceImpl implements PedidoService {
     }
 
     @Override
-    public Pedido buscarUmPedido(Long id) throws Exception {
-        return PedidoRepository.findById(id).orElseThrow(() -> new Exception("Pedido não encontrada!"));
+    public Pedido buscarUmPedido(Long id) {
+        return PedidoRepository.findById(id).orElseThrow(() -> new StockFlowException("Pedido não encontrada!"));
     }
 
     @Override
-    public Pedido alterarPedido(PedidoDTO pedidoDTO) throws Exception {
-        Pedido pedido = Pedido.convert(pedidoDTO);
-        if (PedidoRepository.exists(Example.of(pedido))) {
+    public Pedido alterarPedido(PedidoDTO pedidoDTO) {
+        Pedido pedido = this.buscarUmPedido(pedidoDTO.id());
             return PedidoRepository.save(pedido);
-        } else {
-            throw new Exception("Pedido não encontrada!");
-        }
     }
 
     @Override
-    public void deletarPedido(Long id) throws Exception {
+    public void deletarPedido(Long id) {
         Pedido pedido = this.buscarUmPedido(id);
         PedidoRepository.delete(pedido);
     }
 
     @Override
-    public void deletarPedido(PedidoDTO pedido) throws Exception {
+    public void deletarPedido(PedidoDTO pedido) {
         Pedido pedidoEncontrado = this.buscarUmPedido(pedido.id());
         PedidoRepository.delete(pedidoEncontrado);
     }

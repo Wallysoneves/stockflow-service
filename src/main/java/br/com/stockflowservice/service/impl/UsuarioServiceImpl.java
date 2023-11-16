@@ -2,6 +2,7 @@ package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Usuario;
 import br.com.stockflowservice.domain.dto.UsuarioDTO;
+import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.UsuarioRepository;
 import br.com.stockflowservice.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,29 +29,24 @@ public class UsuarioServiceImpl implements UsuarioService {
     }
 
     @Override
-    public Usuario buscarUmUsuario(Long id) throws Exception {
-        return UsuarioRepository.findById(id).orElseThrow(() -> new Exception("Usuario não encontrada!"));
+    public Usuario buscarUmUsuario(Long id) {
+        return UsuarioRepository.findById(id).orElseThrow(() -> new StockFlowException("Usuario não encontrada!"));
     }
 
     @Override
-    public Usuario alterarUsuario(UsuarioDTO usuarioDTO) throws Exception {
+    public Usuario alterarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuario = new Usuario(usuarioDTO);
-
-        if (UsuarioRepository.exists(Example.of(usuario))) {
-            return UsuarioRepository.save(usuario);
-        } else {
-            throw new Exception("Usuario não encontrada!");
-        }
+        return UsuarioRepository.save(usuario);
     }
 
     @Override
-    public void deletarUsuario(Long id) throws Exception {
+    public void deletarUsuario(Long id) {
         Usuario usuario = this.buscarUmUsuario(id);
         UsuarioRepository.delete(usuario);
     }
 
     @Override
-    public void deletarUsuario(UsuarioDTO usuarioDTO) throws Exception {
+    public void deletarUsuario(UsuarioDTO usuarioDTO) {
         Usuario usuarioEncontrado = this.buscarUmUsuario(usuarioDTO.id());
         UsuarioRepository.delete(usuarioEncontrado);
     }

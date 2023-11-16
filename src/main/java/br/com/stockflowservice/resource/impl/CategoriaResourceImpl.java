@@ -45,7 +45,7 @@ public class CategoriaResourceImpl implements CategoriaResource {
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Categoria> buscarUmaCategoria(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<Categoria> buscarUmaCategoria(@PathVariable("id") Long id) {
         return ResponseEntity.ok(categoriaService.buscarUmaCategoria(id));
     }
 
@@ -54,13 +54,13 @@ public class CategoriaResourceImpl implements CategoriaResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Categoria> alterarCategoria(@Valid @RequestBody  CategoriaDTO categoria) throws Exception {
+    public ResponseEntity<Categoria> alterarCategoria(@Valid @RequestBody  CategoriaDTO categoria) {
         return ResponseEntity.ok(categoriaService.alterarCategoria(categoria));
     }
 
     @Override
     @DeleteMapping(value = "/{id}")
-    public void deletarCategoria(@PathVariable("id") Long id) throws Exception {
+    public void deletarCategoria(@PathVariable("id") Long id) {
         categoriaService.deletarCategoria(id);
     }
 
@@ -68,7 +68,7 @@ public class CategoriaResourceImpl implements CategoriaResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarCategoria(@Valid @RequestBody  CategoriaDTO categoria) throws Exception {
+    public void deletarCategoria(@Valid @RequestBody  CategoriaDTO categoria) {
         categoriaService.deletarCategoria(categoria);
     }
 
@@ -76,7 +76,7 @@ public class CategoriaResourceImpl implements CategoriaResource {
     @GetMapping(value = "/buscar/nome",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Categoria> buscarCategoriaNome(@RequestParam("nome") String nomeCategoria) throws Exception {
+    public ResponseEntity<Categoria> buscarCategoriaNome(@RequestParam("nome") String nomeCategoria) {
         return ResponseEntity.ok(categoriaService.buscarCategoriaNome(nomeCategoria));
     }
 }

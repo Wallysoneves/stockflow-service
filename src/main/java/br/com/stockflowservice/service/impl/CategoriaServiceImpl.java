@@ -3,10 +3,12 @@ package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Categoria;
 import br.com.stockflowservice.domain.dto.CategoriaDTO;
+import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.CategoriaRepository;
 import br.com.stockflowservice.service.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,12 +35,13 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria buscarUmaCategoria(Long id) throws Exception {
-        return categoriaRepository.findById(id).orElseThrow(() -> new Exception("Categoria não encontrada!"));
+    public Categoria buscarUmaCategoria(Long id) {
+        return categoriaRepository.findById(id)
+                .orElseThrow(() -> new StockFlowException("Categoria não encontrada!", HttpStatus.NOT_FOUND));
     }
 
     @Override
-    public Categoria alterarCategoria(CategoriaDTO categoriaDTO) throws Exception {
+    public Categoria alterarCategoria(CategoriaDTO categoriaDTO) {
         Categoria categoria = this.buscarUmaCategoria(categoriaDTO.id());
         categoria.setNome(categoriaDTO.nome());
         categoria.setObservacao(categoriaDTO.observacao());
@@ -47,13 +50,13 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public void deletarCategoria(Long id) throws Exception {
+    public void deletarCategoria(Long id) {
         Categoria categoria = this.buscarUmaCategoria(id);
         categoriaRepository.delete(categoria);
     }
 
     @Override
-    public void deletarCategoria(CategoriaDTO categoriaDTO) throws Exception {
+    public void deletarCategoria(CategoriaDTO categoriaDTO) {
         Categoria categoria = new Categoria(categoriaDTO);
 
         Categoria categoriaBuscada = this.buscarUmaCategoria(categoria.getId());
@@ -61,7 +64,8 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
 
     @Override
-    public Categoria buscarCategoriaNome(String nomeCategoria) throws Exception {
-        return categoriaRepository.findByNome(nomeCategoria).orElseThrow(() -> new Exception("Categoria não encontrada!"));
+    public Categoria buscarCategoriaNome(String nomeCategoria) {
+        return categoriaRepository.findByNome(nomeCategoria)
+                .orElseThrow(() -> new StockFlowException("Categoria não encontrada!", HttpStatus.NOT_FOUND));
     }
 }

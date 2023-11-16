@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface EstoqueService {
 
-    Estoque criarEstoque(EstoqueDTO Estoque) throws Exception;
+    Estoque criarEstoque(EstoqueDTO Estoque);
 
     List<Estoque> buscarTodasEstoque();
 
-    Estoque buscarUmEstoque(Long id) throws Exception;
+    Estoque buscarUmEstoque(Long id);
 
-    Estoque alterarEstoque(EstoqueDTO Estoque) throws Exception;
+    Estoque alterarEstoque(EstoqueDTO Estoque);
 
-    void deletarEstoque(Long id) throws Exception;
+    void deletarEstoque(Long id);
 
-    void deletarEstoque(EstoqueDTO Estoque) throws Exception;
+    void deletarEstoque(EstoqueDTO Estoque);
 }

@@ -13,11 +13,11 @@ public interface ItemPedidoService {
 
     List<ItemPedido> buscarTodasItemPedido();
 
-    ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id) throws Exception;
+    ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id);
 
-    ItemPedido alterarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
+    ItemPedido alterarItemPedido(ItemPedidoDTO ItemPedido);
 
-    void deletarItemPedido(ItemPedidoIdDTO id) throws Exception;
+    void deletarItemPedido(ItemPedidoIdDTO id);
 
-    void deletarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
+    void deletarItemPedido(ItemPedidoDTO ItemPedido);
 }

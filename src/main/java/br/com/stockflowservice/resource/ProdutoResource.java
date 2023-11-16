@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface ProdutoResource {
 
-    ResponseEntity<Produto> criarProduto(ProdutoDTO Produto) throws Exception;
+    ResponseEntity<Produto> criarProduto(ProdutoDTO Produto);
 
     ResponseEntity<List<Produto>> buscarTodasProduto();
 
-    ResponseEntity<Produto> buscarUmProduto(Long id) throws Exception;
+    ResponseEntity<Produto> buscarUmProduto(Long id);
 
-    ResponseEntity<Produto> alterarProduto(ProdutoDTO Produto) throws Exception;
+    ResponseEntity<Produto> alterarProduto(ProdutoDTO Produto);
 
-    void deletarProduto(Long id) throws Exception;
+    void deletarProduto(Long id);
 
-    void deletarProduto(ProdutoDTO Produto) throws Exception;
+    void deletarProduto(ProdutoDTO Produto);
 }

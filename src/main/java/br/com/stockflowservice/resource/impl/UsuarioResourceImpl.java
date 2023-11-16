@@ -45,7 +45,7 @@ public class UsuarioResourceImpl implements UsuarioResource {
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Usuario> buscarUmUsuario(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<Usuario> buscarUmUsuario(@PathVariable("id") Long id) {
         return ResponseEntity.ok(usuarioService.buscarUmUsuario(id));
     }
 
@@ -54,13 +54,13 @@ public class UsuarioResourceImpl implements UsuarioResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Usuario> alterarUsuario(@Valid @RequestBody UsuarioDTO usuario) throws Exception {
+    public ResponseEntity<Usuario> alterarUsuario(@Valid @RequestBody UsuarioDTO usuario) {
         return ResponseEntity.ok(usuarioService.alterarUsuario(usuario));
     }
 
     @Override
     @DeleteMapping(value = "/{id}")
-    public void deletarUsuario(@PathVariable("id") Long id) throws Exception {
+    public void deletarUsuario(@PathVariable("id") Long id) {
         usuarioService.deletarUsuario(id);
     }
 
@@ -68,7 +68,7 @@ public class UsuarioResourceImpl implements UsuarioResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarUsuario(@Valid @RequestBody UsuarioDTO usuario) throws Exception {
+    public void deletarUsuario(@Valid @RequestBody UsuarioDTO usuario) {
         usuarioService.deletarUsuario(usuario);
     }
 }

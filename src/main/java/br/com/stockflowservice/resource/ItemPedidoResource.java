@@ -14,11 +14,11 @@ public interface ItemPedidoResource {
 
     ResponseEntity<List<ItemPedido>> buscarTodasItemPedido();
 
-    ResponseEntity<ItemPedido> buscarUmItemPedido(ItemPedidoIdDTO id) throws Exception;
+    ResponseEntity<ItemPedido> buscarUmItemPedido(ItemPedidoIdDTO id);
 
-    ResponseEntity<ItemPedido> alterarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
+    ResponseEntity<ItemPedido> alterarItemPedido(ItemPedidoDTO ItemPedido);
 
-    void deletarItemPedido(ItemPedidoIdDTO id) throws Exception;
+    void deletarItemPedido(ItemPedidoIdDTO id);
 
-    void deletarItemPedido(ItemPedidoDTO ItemPedido) throws Exception;
+    void deletarItemPedido(ItemPedidoDTO ItemPedido);
 }

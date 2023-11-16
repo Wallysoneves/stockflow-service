@@ -11,13 +11,13 @@ public interface CategoriaService {
 
     List<Categoria> buscarTodasCategoria();
 
-    Categoria buscarUmaCategoria(Long id) throws Exception;
+    Categoria buscarUmaCategoria(Long id);
 
-    Categoria alterarCategoria(CategoriaDTO categoria) throws Exception;
+    Categoria alterarCategoria(CategoriaDTO categoria);
 
-    void deletarCategoria(Long id) throws Exception;
+    void deletarCategoria(Long id);
 
-    void deletarCategoria(CategoriaDTO categoria) throws Exception;
+    void deletarCategoria(CategoriaDTO categoria);
 
-    Categoria buscarCategoriaNome(String nomeCategoria) throws Exception;
+    Categoria buscarCategoriaNome(String nomeCategoria);
 }

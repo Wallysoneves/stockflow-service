@@ -7,15 +7,15 @@ import java.util.List;
 
 public interface ProdutoService {
 
-    Produto criarProduto(ProdutoDTO Produto) throws Exception;
+    Produto criarProduto(ProdutoDTO Produto);
 
     List<Produto> buscarTodasProduto();
 
-    Produto buscarUmProduto(Long id) throws Exception;
+    Produto buscarUmProduto(Long id);
 
-    Produto alterarProduto(ProdutoDTO Produto) throws Exception;
+    Produto alterarProduto(ProdutoDTO Produto);
 
-    void deletarProduto(Long id) throws Exception;
+    void deletarProduto(Long id);
 
-    void deletarProduto(ProdutoDTO Produto) throws Exception;
+    void deletarProduto(ProdutoDTO Produto);
 }

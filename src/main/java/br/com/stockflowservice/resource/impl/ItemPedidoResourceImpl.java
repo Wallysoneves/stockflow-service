@@ -47,7 +47,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     @GetMapping(value = "/id",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<ItemPedido> buscarUmItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) throws Exception {
+    public ResponseEntity<ItemPedido> buscarUmItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) {
         return ResponseEntity.ok(itemPedidoService.buscarUmItemPedido(id));
     }
 
@@ -56,13 +56,13 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<ItemPedido> alterarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) throws Exception {
+    public ResponseEntity<ItemPedido> alterarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
         return ResponseEntity.ok(itemPedidoService.alterarItemPedido(itemPedido));
     }
 
     @Override
     @DeleteMapping(value = "/id")
-    public void deletarItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) throws Exception {
+    public void deletarItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) {
         itemPedidoService.deletarItemPedido(id);
     }
 
@@ -70,7 +70,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) throws Exception {
+    public void deletarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
         itemPedidoService.deletarItemPedido(itemPedido);
     }
 }

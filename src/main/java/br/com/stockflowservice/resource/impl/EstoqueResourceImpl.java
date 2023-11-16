@@ -29,7 +29,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Estoque> criarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
+    public ResponseEntity<Estoque> criarEstoque(@Valid @RequestBody EstoqueDTO estoque) {
         return ResponseEntity.ok(estoqueService.criarEstoque(estoque));
     }
 
@@ -45,7 +45,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Estoque> buscarUmEstoque(@PathVariable("id") Long id) throws Exception {
+    public ResponseEntity<Estoque> buscarUmEstoque(@PathVariable("id") Long id) {
         return ResponseEntity.ok(estoqueService.buscarUmEstoque(id));
     }
 
@@ -54,13 +54,13 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Estoque> alterarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
+    public ResponseEntity<Estoque> alterarEstoque(@Valid @RequestBody EstoqueDTO estoque) {
         return ResponseEntity.ok(estoqueService.alterarEstoque(estoque));
     }
 
     @Override
     @DeleteMapping(value = "/{id}")
-    public void deletarEstoque(@PathVariable("id") Long id) throws Exception {
+    public void deletarEstoque(@PathVariable("id") Long id) {
         estoqueService.deletarEstoque(id);
     }
 
@@ -68,7 +68,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
+    public void deletarEstoque(@Valid @RequestBody EstoqueDTO estoque) {
         estoqueService.deletarEstoque(estoque);
     }
 }

@@ -8,15 +8,15 @@ import java.util.List;
 
 public interface EstoqueResource {
 
-    ResponseEntity<Estoque> criarEstoque(EstoqueDTO Estoque) throws Exception;
+    ResponseEntity<Estoque> criarEstoque(EstoqueDTO Estoque);
 
     ResponseEntity<List<Estoque>> buscarTodasEstoque();
 
-    ResponseEntity<Estoque> buscarUmEstoque(Long id) throws Exception;
+    ResponseEntity<Estoque> buscarUmEstoque(Long id);
 
-    ResponseEntity<Estoque> alterarEstoque(EstoqueDTO Estoque) throws Exception;
+    ResponseEntity<Estoque> alterarEstoque(EstoqueDTO Estoque);
 
-    void deletarEstoque(Long id) throws Exception;
+    void deletarEstoque(Long id);
 
-    void deletarEstoque(EstoqueDTO Estoque) throws Exception;
+    void deletarEstoque(EstoqueDTO Estoque);
 }

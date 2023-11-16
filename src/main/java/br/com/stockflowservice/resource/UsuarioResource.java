@@ -12,11 +12,11 @@ public interface UsuarioResource {
 
     ResponseEntity<List<Usuario>> buscarTodasUsuario();
 
-    ResponseEntity<Usuario> buscarUmUsuario(Long id) throws Exception;
+    ResponseEntity<Usuario> buscarUmUsuario(Long id);
 
-    ResponseEntity<Usuario> alterarUsuario(UsuarioDTO Usuario) throws Exception;
+    ResponseEntity<Usuario> alterarUsuario(UsuarioDTO Usuario);
 
-    void deletarUsuario(Long id) throws Exception;
+    void deletarUsuario(Long id);
 
-    void deletarUsuario(UsuarioDTO Usuario) throws Exception;
+    void deletarUsuario(UsuarioDTO Usuario);
 }

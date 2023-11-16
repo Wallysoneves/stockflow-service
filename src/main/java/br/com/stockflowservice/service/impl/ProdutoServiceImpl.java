@@ -3,6 +3,7 @@ package br.com.stockflowservice.service.impl;
 import br.com.stockflowservice.domain.Categoria;
 import br.com.stockflowservice.domain.Produto;
 import br.com.stockflowservice.domain.dto.ProdutoDTO;
+import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.ProdutoRepository;
 import br.com.stockflowservice.service.CategoriaService;
 import br.com.stockflowservice.service.ProdutoService;
@@ -22,7 +23,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     private CategoriaService categoriaService;
 
     @Override
-    public Produto criarProduto(ProdutoDTO produtoDTO) throws Exception {
+    public Produto criarProduto(ProdutoDTO produtoDTO) {
         Produto produto = new Produto(produtoDTO);
         Categoria categoria = categoriaService.buscarUmaCategoria(produtoDTO.categoriaDTO().id());
         produto.setCategoria(categoria);
@@ -35,25 +36,25 @@ public class ProdutoServiceImpl implements ProdutoService {
     }
 
     @Override
-    public Produto buscarUmProduto(Long id) throws Exception {
-        return produtoRepository.findById(id).orElseThrow(() -> new Exception("Produto não encontrada!"));
+    public Produto buscarUmProduto(Long id) {
+        return produtoRepository.findById(id).orElseThrow(() -> new StockFlowException("Produto não encontrada!"));
     }
 
     @Override
-    public Produto alterarProduto(ProdutoDTO produtoDTO) throws Exception {
+    public Produto alterarProduto(ProdutoDTO produtoDTO) {
         Produto produto = buscarUmProduto(produtoDTO.id());
         return produtoRepository.save(produto);
 
     }
 
     @Override
-    public void deletarProduto(Long id) throws Exception {
+    public void deletarProduto(Long id) {
         Produto produto = this.buscarUmProduto(id);
         produtoRepository.delete(produto);
     }
 
     @Override
-    public void deletarProduto(ProdutoDTO produto) throws Exception {
+    public void deletarProduto(ProdutoDTO produto) {
         Produto produtoEncontrado = this.buscarUmProduto(produto.id());
         produtoRepository.delete(produtoEncontrado);
     }

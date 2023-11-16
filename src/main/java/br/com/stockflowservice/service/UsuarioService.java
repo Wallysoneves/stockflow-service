@@ -11,11 +11,11 @@ public interface UsuarioService {
 
     List<Usuario> buscarTodasUsuario();
 
-    Usuario buscarUmUsuario(Long id) throws Exception;
+    Usuario buscarUmUsuario(Long id);
 
-    Usuario alterarUsuario(UsuarioDTO Usuario) throws Exception;
+    Usuario alterarUsuario(UsuarioDTO Usuario);
 
-    void deletarUsuario(Long id) throws Exception;
+    void deletarUsuario(Long id);
 
-    void deletarUsuario(UsuarioDTO Usuario) throws Exception;
+    void deletarUsuario(UsuarioDTO Usuario);
 }

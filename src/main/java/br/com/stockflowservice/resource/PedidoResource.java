@@ -12,11 +12,11 @@ public interface PedidoResource {
 
     ResponseEntity<List<Pedido>> buscarTodasPedido();
 
-    ResponseEntity<Pedido> buscarUmPedido(Long id) throws Exception;
+    ResponseEntity<Pedido> buscarUmPedido(Long id);
 
-    ResponseEntity<Pedido> alterarPedido(PedidoDTO Pedido) throws Exception;
+    ResponseEntity<Pedido> alterarPedido(PedidoDTO Pedido);
 
-    void deletarPedido(Long id) throws Exception;
+    void deletarPedido(Long id);
 
-    void deletarPedido(PedidoDTO Pedido) throws Exception;
+    void deletarPedido(PedidoDTO Pedido);
 }
