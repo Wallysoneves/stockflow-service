@@ -7,14 +7,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.modelmapper.ModelMapper;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Getter
 @Setter
@@ -38,7 +36,7 @@ public class Produto {
 
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonBackReference
     private Categoria categoria;
 
     @OneToOne(mappedBy = "produto", fetch = FetchType.LAZY)
@@ -50,7 +48,8 @@ public class Produto {
     @Column(name = "codigo_barra", nullable = false)
     private Long codigoBarra;
 
-    @Column(name = "data_cadastro", nullable = false)
+    @Column(name = "data_cadastro")
+    @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataCadastro;
 
     @Column(name = "data_alteracao")
@@ -59,9 +58,14 @@ public class Produto {
     @Column(name = "observacao")
     private String observacao;
 
-    public static Produto convert(ProdutoDTO produtoDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(produtoDTO, Produto.class);
+    public Produto (ProdutoDTO produtoDTO) {
+        this.id = produtoDTO.id();
+        this.nome = produtoDTO.nome();
+        this.descricao = produtoDTO.descricao();
+        this.preco = produtoDTO.preco();
+        this.codigoBarra = produtoDTO.codigoBarra();
+        this.dataCadastro = Objects.nonNull(produtoDTO.dataCadastro()) ? produtoDTO.dataCadastro() : LocalDateTime.now();
+        this.observacao = produtoDTO.observacao();
     }
 
 }

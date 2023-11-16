@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface ProdutoService {
 
-    Produto criarProduto(ProdutoDTO Produto);
+    Produto criarProduto(ProdutoDTO Produto) throws Exception;
 
     List<Produto> buscarTodasProduto();
 

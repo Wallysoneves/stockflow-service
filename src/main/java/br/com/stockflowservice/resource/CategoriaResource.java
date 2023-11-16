@@ -92,4 +92,17 @@ public interface CategoriaResource {
             @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
     )
     void deletarCategoria(CategoriaDTO categoria) throws Exception;
+
+    @Operation(
+            summary = "Recupera uma categoria",
+            description = "Método responsável para recuperar uma categorias por nome no sistema",
+            tags = { "categoria" }
+    )
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", content = { @Content(schema = @Schema(implementation = CategoriaDTO.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "303", content = { @Content(schema = @Schema(implementation = CategoriaDTO.class), mediaType = "application/json") }),
+            @ApiResponse(responseCode = "404", content = { @Content(schema = @Schema()) }),
+            @ApiResponse(responseCode = "500", content = { @Content(schema = @Schema()) }) }
+    )
+    ResponseEntity<Categoria> buscarCategoriaNome(String nomeCategoria) throws Exception;
 }

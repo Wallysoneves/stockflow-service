@@ -18,4 +18,6 @@ public interface CategoriaService {
     void deletarCategoria(Long id) throws Exception;
 
     void deletarCategoria(CategoriaDTO categoria) throws Exception;
+
+    Categoria buscarCategoriaNome(String nomeCategoria) throws Exception;
 }

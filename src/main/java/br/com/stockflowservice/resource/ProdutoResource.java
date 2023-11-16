@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ProdutoResource {
 
-    ResponseEntity<Produto> criarProduto(ProdutoDTO Produto);
+    ResponseEntity<Produto> criarProduto(ProdutoDTO Produto) throws Exception;
 
     ResponseEntity<List<Produto>> buscarTodasProduto();
 

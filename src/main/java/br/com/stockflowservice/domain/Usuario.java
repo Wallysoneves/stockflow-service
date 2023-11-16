@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.PropertyMap;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,7 +40,7 @@ public class Usuario {
     @Column(name = "senha", nullable = false)
     private String senha;
 
-    @Column(name = "data_cadastro", nullable = false)
+    @Column(name = "data_cadastro")
     private LocalDateTime dataCadastro;
 
     @Column(name = "data_nascimento", nullable = false)
@@ -52,9 +53,16 @@ public class Usuario {
     @JsonIgnore
     private List<Pedido> pedidos = new ArrayList<>();
 
-    public static Usuario convert(UsuarioDTO usuarioDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(usuarioDTO, Usuario.class);
+    public Usuario (UsuarioDTO usuarioDTO) {
+
+        this.id = usuarioDTO.id();
+        this.nome = usuarioDTO.nome();
+        this.email = usuarioDTO.email();
+        this.login = usuarioDTO.login();
+        this.senha = usuarioDTO.senha();
+        this.dataCadastro = LocalDateTime.now();
+        this.dataNascimento = usuarioDTO.dataNascimento();
+        this.dataAlteracao = LocalDateTime.now();
     }
 
 }

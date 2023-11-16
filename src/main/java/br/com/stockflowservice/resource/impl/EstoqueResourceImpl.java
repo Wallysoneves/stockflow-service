@@ -1,6 +1,7 @@
 package br.com.stockflowservice.resource.impl;
 
 import br.com.stockflowservice.domain.Estoque;
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.resource.EstoqueResource;
 import br.com.stockflowservice.service.EstoqueService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,7 +29,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Estoque> criarEstoque(@Valid @RequestBody Estoque estoque) {
+    public ResponseEntity<Estoque> criarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
         return ResponseEntity.ok(estoqueService.criarEstoque(estoque));
     }
 
@@ -53,7 +54,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Estoque> alterarEstoque(@Valid @RequestBody Estoque estoque) throws Exception {
+    public ResponseEntity<Estoque> alterarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
         return ResponseEntity.ok(estoqueService.alterarEstoque(estoque));
     }
 
@@ -67,7 +68,7 @@ public class EstoqueResourceImpl implements EstoqueResource {
     @DeleteMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public void deletarEstoque(@Valid @RequestBody Estoque estoque) throws Exception {
+    public void deletarEstoque(@Valid @RequestBody EstoqueDTO estoque) throws Exception {
         estoqueService.deletarEstoque(estoque);
     }
 }

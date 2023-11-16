@@ -18,7 +18,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario criarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuario = Usuario.convert(usuarioDTO);
+        Usuario usuario = new Usuario(usuarioDTO);
         return UsuarioRepository.save(usuario);
     }
 
@@ -34,7 +34,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public Usuario alterarUsuario(UsuarioDTO usuarioDTO) throws Exception {
-        Usuario usuario = Usuario.convert(usuarioDTO);
+        Usuario usuario = new Usuario(usuarioDTO);
 
         if (UsuarioRepository.exists(Example.of(usuario))) {
             return UsuarioRepository.save(usuario);

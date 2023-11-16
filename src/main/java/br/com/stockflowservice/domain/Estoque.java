@@ -8,7 +8,9 @@ import lombok.*;
 import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -33,7 +35,7 @@ public class Estoque {
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;
 
-    @Column(name = "data_entrada", nullable = false)
+    @Column(name = "data_entrada")
     private LocalDateTime dataEntrada;
 
     @Column(name = "preco_compra", nullable = false)
@@ -45,8 +47,12 @@ public class Estoque {
     @Column(name = "situacao", length = 1)
     private String situacao;
 
-    public static Estoque convert(EstoqueDTO estoqueDTO) {
-        ModelMapper modelMapper = new ModelMapper();
-        return modelMapper.map(estoqueDTO, Estoque.class);
+    public Estoque (EstoqueDTO estoqueDTO) {
+        this.id = estoqueDTO.id();
+        this.quantidade = estoqueDTO.quantidade();
+        this.dataEntrada = Objects.nonNull(estoqueDTO.dataEntrada()) ? estoqueDTO.dataEntrada() : LocalDateTime.now();
+        this.precoCompra = estoqueDTO.precoCompra();
+        this.precoVenda = estoqueDTO.precoVenda();
+        this.situacao = estoqueDTO.situacao();
     }
 }

@@ -71,4 +71,12 @@ public class CategoriaResourceImpl implements CategoriaResource {
     public void deletarCategoria(@Valid @RequestBody  CategoriaDTO categoria) throws Exception {
         categoriaService.deletarCategoria(categoria);
     }
+
+    @Override
+    @GetMapping(value = "/buscar/nome",
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<Categoria> buscarCategoriaNome(@RequestParam("nome") String nomeCategoria) throws Exception {
+        return ResponseEntity.ok(categoriaService.buscarCategoriaNome(nomeCategoria));
+    }
 }

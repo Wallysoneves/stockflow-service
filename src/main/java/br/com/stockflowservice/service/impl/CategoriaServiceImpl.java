@@ -59,4 +59,9 @@ public class CategoriaServiceImpl implements CategoriaService {
         Categoria categoriaBuscada = this.buscarUmaCategoria(categoria.getId());
         categoriaRepository.delete(categoriaBuscada);
     }
+
+    @Override
+    public Categoria buscarCategoriaNome(String nomeCategoria) throws Exception {
+        return categoriaRepository.findByNome(nomeCategoria).orElseThrow(() -> new Exception("Categoria não encontrada!"));
+    }
 }

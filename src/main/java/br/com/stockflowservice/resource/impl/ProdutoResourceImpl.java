@@ -29,7 +29,7 @@ public class ProdutoResourceImpl implements ProdutoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<Produto> criarProduto(@Valid @RequestBody ProdutoDTO produto) {
+    public ResponseEntity<Produto> criarProduto(@Valid @RequestBody ProdutoDTO produto) throws Exception {
         return ResponseEntity.ok(produtoService.criarProduto(produto));
     }
 

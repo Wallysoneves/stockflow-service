@@ -1,8 +1,11 @@
 package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Estoque;
+import br.com.stockflowservice.domain.Produto;
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.repository.EstoqueRepository;
 import br.com.stockflowservice.service.EstoqueService;
+import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -15,8 +18,14 @@ public class EstoqueServiceImpl implements EstoqueService {
     @Autowired
     private EstoqueRepository EstoqueRepository;
 
+    @Autowired
+    private ProdutoService produtoService;
+
     @Override
-    public Estoque criarEstoque(Estoque estoque) {
+    public Estoque criarEstoque(EstoqueDTO estoqueDTO) throws Exception {
+        Estoque estoque = new Estoque(estoqueDTO);
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
+        estoque.setProduto(produto);
         return EstoqueRepository.save(estoque);
     }
 
@@ -31,13 +40,13 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public Estoque alterarEstoque(Estoque estoque) throws Exception {
-
-        if (EstoqueRepository.exists(Example.of(estoque))) {
-            return EstoqueRepository.save(estoque);
-        } else {
-            throw new Exception("Estoque não encontrada!");
-        }
+    public Estoque alterarEstoque(EstoqueDTO estoqueDTO) throws Exception {
+        Estoque estoque = this.buscarUmEstoque(estoqueDTO.id());
+        estoque.setQuantidade(estoqueDTO.quantidade());
+        estoque.setSituacao(estoque.getSituacao());
+        estoque.setPrecoCompra(estoqueDTO.precoCompra());
+        estoque.setPrecoVenda(estoqueDTO.precoVenda());
+        return EstoqueRepository.save(estoque);
     }
 
     @Override
@@ -47,8 +56,8 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
-    public void deletarEstoque(Estoque estoque) throws Exception {
-        Estoque estoqueEncontrado = this.buscarUmEstoque(estoque.getId());
+    public void deletarEstoque(EstoqueDTO estoqueDTO) throws Exception {
+        Estoque estoqueEncontrado = this.buscarUmEstoque(estoqueDTO.id());
         EstoqueRepository.delete(estoqueEncontrado);
     }
 }
