@@ -39,7 +39,7 @@ public class Produto {
     @JsonBackReference
     private Categoria categoria;
 
-    @OneToOne(mappedBy = "produto", fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "produto")
     private Estoque estoque;
 
     @Column(name = "preco", nullable = false)
