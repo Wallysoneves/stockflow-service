@@ -36,11 +36,7 @@ public class Produto {
 
     @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonBackReference
     private Categoria categoria;
-
-    @OneToOne(mappedBy = "produto")
-    private Estoque estoque;
 
     @Column(name = "preco", nullable = false)
     private BigDecimal preco;

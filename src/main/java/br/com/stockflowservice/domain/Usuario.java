@@ -49,10 +49,6 @@ public class Usuario {
     @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-    @JsonIgnore
-    private List<Pedido> pedidos = new ArrayList<>();
-
     public Usuario (UsuarioDTO usuarioDTO) {
 
         this.id = usuarioDTO.id();

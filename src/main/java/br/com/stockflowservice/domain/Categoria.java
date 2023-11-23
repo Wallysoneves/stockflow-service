@@ -21,14 +21,6 @@ import java.util.Objects;
 @Table(name = "categorias")
 public class Categoria {
 
-    public Categoria (CategoriaDTO categoriaDTO) {
-        this.id = categoriaDTO.id();
-        this.nome = categoriaDTO.nome();
-        this.dataCadastro = Objects.nonNull(categoriaDTO.dataCadastro()) ? categoriaDTO.dataCadastro() : LocalDateTime.now();
-        this.observacao = categoriaDTO.observacao();
-        this.produtos = new ArrayList<>();
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_categoria")
@@ -44,8 +36,11 @@ public class Categoria {
     @Column(name = "observacao")
     private String observacao;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Produto> produtos = new ArrayList<>();
+    public Categoria (CategoriaDTO categoriaDTO) {
+        this.id = categoriaDTO.id();
+        this.nome = categoriaDTO.nome();
+        this.dataCadastro = Objects.nonNull(categoriaDTO.dataCadastro()) ? categoriaDTO.dataCadastro() : LocalDateTime.now();
+        this.observacao = categoriaDTO.observacao();
+    }
 
 }

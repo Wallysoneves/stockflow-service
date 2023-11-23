@@ -29,7 +29,6 @@ public class Estoque {
 
     @JoinColumn(name = "id_produto")
     @OneToOne(fetch = FetchType.LAZY)
-    @JsonIgnore
     private Produto produto;
 
     @Column(name = "quantidade", nullable = false)

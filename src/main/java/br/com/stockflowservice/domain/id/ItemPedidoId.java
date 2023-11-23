@@ -24,12 +24,10 @@ public class ItemPedidoId {
 
     @ManyToOne
     @JoinColumn(name = "id_produto", referencedColumnName = "id_produto")
-    @JsonBackReference
     private Produto produto;
 
     @ManyToOne
     @JoinColumn(name = "id_pedido", referencedColumnName = "id_pedido")
-    @JsonBackReference
     private Pedido pedido;
 
     public static ItemPedidoId convert(ItemPedidoIdDTO itemPedidoIdDTO) {
