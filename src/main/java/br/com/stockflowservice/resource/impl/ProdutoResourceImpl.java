@@ -42,6 +42,14 @@ public class ProdutoResourceImpl implements ProdutoResource {
     }
 
     @Override
+    @GetMapping(value = "/campo-pesquisa",
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<List<Produto>> buscarCampoPesquisa (@RequestParam("texto")String texto) {
+        return ResponseEntity.ok(produtoService.buscarCampoPesquisa(texto));
+    }
+
+    @Override
     @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )

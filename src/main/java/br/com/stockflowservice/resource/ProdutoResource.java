@@ -12,6 +12,8 @@ public interface ProdutoResource {
 
     ResponseEntity<List<Produto>> buscarTodasProduto();
 
+    ResponseEntity<List<Produto>> buscarCampoPesquisa(String texto);
+
     ResponseEntity<Produto> buscarUmProduto(Long id);
 
     ResponseEntity<Produto> alterarProduto(ProdutoDTO Produto);

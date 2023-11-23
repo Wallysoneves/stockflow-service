@@ -9,6 +9,7 @@ import br.com.stockflowservice.service.CategoriaService;
 import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,6 +34,11 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public List<Produto> buscarTodasProduto() {
         return produtoRepository.findAll();
+    }
+
+    @Override
+    public List<Produto> buscarCampoPesquisa (String texto) {
+        return produtoRepository.buscarCampoPesquisa(texto).orElseThrow(() -> new StockFlowException("Produto não encontrado!", HttpStatus.BAD_REQUEST));
     }
 
     @Override

@@ -11,6 +11,8 @@ public interface ProdutoService {
 
     List<Produto> buscarTodasProduto();
 
+    List<Produto> buscarCampoPesquisa(String texto);
+
     Produto buscarUmProduto(Long id);
 
     Produto alterarProduto(ProdutoDTO Produto);
