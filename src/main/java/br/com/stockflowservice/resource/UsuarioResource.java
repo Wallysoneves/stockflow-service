@@ -13,6 +13,7 @@ public interface UsuarioResource {
     ResponseEntity<List<Usuario>> buscarTodasUsuario();
 
     ResponseEntity<Usuario> buscarUmUsuario(Long id);
+    ResponseEntity<Usuario> buscarUmUsuario(String login, String senha);
 
     ResponseEntity<Usuario> alterarUsuario(UsuarioDTO Usuario);
 

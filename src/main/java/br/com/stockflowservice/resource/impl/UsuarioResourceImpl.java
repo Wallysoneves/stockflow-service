@@ -50,6 +50,14 @@ public class UsuarioResourceImpl implements UsuarioResource {
     }
 
     @Override
+    @GetMapping(value = "/login",
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<Usuario> buscarUmUsuario(@RequestParam("login") String login, @RequestParam("senha")String senha) {
+        return ResponseEntity.ok(usuarioService.buscarUmUsuario(login, senha));
+    }
+
+    @Override
     @PutMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }

@@ -7,6 +7,8 @@ import br.com.stockflowservice.repository.UsuarioRepository;
 import br.com.stockflowservice.service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +33,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario buscarUmUsuario(Long id) {
         return UsuarioRepository.findById(id).orElseThrow(() -> new StockFlowException("Usuario não encontrada!"));
+    }
+
+    @Override
+    public Usuario buscarUmUsuario (String login, String senha) {
+        return UsuarioRepository.login(login, senha).orElseThrow(() -> new StockFlowException("Usuario não cadastrado, favor entre em contato com seu supervisor para realizar o cadastrado", HttpStatus.BAD_REQUEST));
     }
 
     @Override
