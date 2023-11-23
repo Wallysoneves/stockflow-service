@@ -13,7 +13,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     @Query(value = " SELECT *                                           " +
                    "    FROM USUARIOS U                                 " +
-                   "  WHERE (U.LOGIN = :login) AND (U.SENHA = :senha) OR   " +
-                   "    AND (U.EMAIL = :login) AND (U.SENHA = :senha)      ", nativeQuery = true)
+                   "  WHERE (U.LOGIN = :login) AND (U.SENHA = :senha)   " +
+                   "    OR  (U.EMAIL = :login) AND (U.SENHA = :senha)    ", nativeQuery = true)
     Optional<Usuario> login(@Param("login") String login, @Param("senha") String senha);
 }
