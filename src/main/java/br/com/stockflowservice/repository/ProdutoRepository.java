@@ -12,10 +12,9 @@ import java.util.Optional;
 @Repository("produtoRepository")
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
-    @Query(value =  "SELECT P.*                                         " +
-                    "   FROM PRODUTOS P                                 " +
-                    " WHERE P.NOME LIKE '%:texto%' OR                   " +
-                    "   AND P.DESCRICAO LIKE '%:texto%' OR              " +
-                    "   AND P.CODIGO_BARRA = CAST(:texto AS INTEGER)    ", nativeQuery = true)
+    @Query(value =  "SELECT P.* FROM PRODUTOS P " +
+                    "WHERE P.NOME LIKE %:texto% OR " +
+                    "      P.DESCRICAO LIKE %:texto% OR " +
+                    "      P.CODIGO_BARRA = CAST(:texto AS INTEGER)", nativeQuery = true)
     Optional<List<Produto>> buscarCampoPesquisa(@Param("texto") String texto);
 }
