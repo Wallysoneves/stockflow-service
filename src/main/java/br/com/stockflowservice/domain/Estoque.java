@@ -27,7 +27,6 @@ public class Estoque {
     @Column(name = "id_estoque")
     private Long id;
 
-    @JoinColumn(name = "id_produto")
     @OneToOne(fetch = FetchType.LAZY)
     private Produto produto;
 
