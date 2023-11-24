@@ -7,6 +7,9 @@ import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.EstoqueRepository;
 import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.helpers.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Slf4j
 public class EstoqueServiceImpl implements EstoqueService {
 
     @Autowired
@@ -51,6 +55,8 @@ public class EstoqueServiceImpl implements EstoqueService {
         estoque.setPrecoVenda(estoqueDTO.precoVenda());
 
         Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
+
+        log.info("PRODUTO: " + produto.getNome()+ " " + produto.getId());
 
         if (Objects.nonNull(produto)) {
             estoque.setProduto(produto);
