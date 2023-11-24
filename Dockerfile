@@ -1,7 +1,9 @@
 FROM maven:3.8.4-openjdk-17 AS build
 
-COPY . /app
 WORKDIR /app
+
+COPY . /app
+
 RUN mvn clean install
 
 FROM openjdk:17-jdk-slim
