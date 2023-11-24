@@ -12,6 +12,7 @@ import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EstoqueServiceImpl implements EstoqueService {
@@ -42,11 +43,19 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public Estoque alterarEstoque(EstoqueDTO estoqueDTO) {
+
         Estoque estoque = this.buscarUmEstoque(estoqueDTO.id());
         estoque.setQuantidade(estoqueDTO.quantidade());
         estoque.setSituacao(estoque.getSituacao());
         estoque.setPrecoCompra(estoqueDTO.precoCompra());
         estoque.setPrecoVenda(estoqueDTO.precoVenda());
+
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
+
+        if (Objects.nonNull(produto)) {
+            estoque.setProduto(produto);
+        }
+
         return EstoqueRepository.save(estoque);
     }
 
