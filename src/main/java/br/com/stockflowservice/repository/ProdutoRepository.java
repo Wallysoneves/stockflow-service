@@ -16,4 +16,6 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
                     "WHERE P.NOME LIKE %:texto% OR                      " +
                     "      P.DESCRICAO LIKE %:texto%                    ", nativeQuery = true)
     Optional<List<Produto>> buscarCampoPesquisa(@Param("texto") String texto);
+
+    Optional<List<Produto>> findByCodigoBarra(Long codigoBarra);
 }
