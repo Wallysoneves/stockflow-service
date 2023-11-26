@@ -4,6 +4,7 @@ import br.com.stockflowservice.domain.dto.ProdutoDTO;
 import br.com.stockflowservice.domain.dto.UsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 import org.modelmapper.ModelMapper;
@@ -34,7 +35,9 @@ public class Produto {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
+    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonManagedReference
     private Categoria categoria;
 
     @Column(name = "preco", nullable = false)

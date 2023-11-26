@@ -1,6 +1,8 @@
 package br.com.stockflowservice.domain;
 
 import br.com.stockflowservice.domain.dto.CategoriaDTO;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -14,10 +16,12 @@ import java.util.Objects;
 @Getter
 @Setter
 @Builder
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "categorias")
 public class Categoria {
 
@@ -36,11 +40,16 @@ public class Categoria {
     @Column(name = "observacao")
     private String observacao;
 
+    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
+    @JsonBackReference
+    private List<Produto> produtos = new ArrayList<>();
+
     public Categoria (CategoriaDTO categoriaDTO) {
         this.id = categoriaDTO.id();
         this.nome = categoriaDTO.nome();
         this.dataCadastro = Objects.nonNull(categoriaDTO.dataCadastro()) ? categoriaDTO.dataCadastro() : LocalDateTime.now();
         this.observacao = categoriaDTO.observacao();
+        this.produtos = new ArrayList<>();
     }
 
 }
