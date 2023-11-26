@@ -20,8 +20,11 @@ public class HandlerException extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(StockFlowException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ResponseEntity<String> handleCustomException(StockFlowException ex) {
-        return new ResponseEntity<>(ex.getMessage(), ex.getStatus());
+    public ResponseEntity<ApiErrorModel> handleCustomException(StockFlowException ex) {
+
+        ApiErrorModel apiErrorModel = new ApiErrorModel(ex.getStatus(), ex.getMessage());
+
+        return new ResponseEntity<>(apiErrorModel, ex.getStatus());
     }
 
     @Override
