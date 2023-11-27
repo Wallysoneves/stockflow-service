@@ -9,6 +9,7 @@ import br.com.stockflowservice.repository.ProdutoRepository;
 import br.com.stockflowservice.service.CategoriaService;
 import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
+import br.com.stockflowservice.service.component.InjecaoDependencia;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     private CategoriaService categoriaService;
 
     @Autowired
-    private EstoqueService estoqueService;
+    private InjecaoDependencia injecaoDependencia;
 
     @Override
     public Produto criarProduto(ProdutoDTO produtoDTO) {
@@ -41,14 +42,14 @@ public class ProdutoServiceImpl implements ProdutoService {
         Produto produtoNovo = produtoRepository.save(produto);
 
         EstoqueDTO estoqueDTO = EstoqueDTO.builder()
-                                    .dataEntrada(produtoNovo.getDataCadastro())
-                                    .situacao("I")
-                                    .precoCompra(produtoNovo.getPreco())
-                                    .precoVenda(produtoNovo.getPreco())
-                                    .quantidade(0)
-                                    .build();
+                                          .dataEntrada(produtoNovo.getDataCadastro())
+                                          .situacao("I")
+                                          .precoCompra(produtoNovo.getPreco())
+                                          .precoVenda(produtoNovo.getPreco())
+                                          .quantidade(0)
+                                          .build();
 
-        estoqueService.criarEstoque(estoqueDTO, produtoNovo);
+        injecaoDependencia.criarEstoque(estoqueDTO, produtoNovo);
 
         return produtoNovo;
 
