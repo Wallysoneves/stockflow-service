@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProdutoServiceImpl implements ProdutoService {
@@ -62,6 +64,14 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public Produto alterarProduto(ProdutoDTO produtoDTO) {
         Produto produto = buscarUmProduto(produtoDTO.id());
+
+        produto.setNome(produtoDTO.nome());
+        produto.setDescricao(produtoDTO.descricao());
+        produto.setObservacao(produto.getObservacao());
+        produto.setPreco(produtoDTO.preco());
+        produto.setCodigoBarra(produtoDTO.codigoBarra());
+        produto.setDataAlteracao(Objects.nonNull(produtoDTO.dataAlteracao()) ? produtoDTO.dataAlteracao() : LocalDateTime.now());
+
         return produtoRepository.save(produto);
 
     }
