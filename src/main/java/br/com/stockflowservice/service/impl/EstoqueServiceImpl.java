@@ -36,6 +36,13 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
+    public Estoque criarEstoque(EstoqueDTO estoqueDTO, Produto produto) {
+        Estoque estoque = new Estoque(estoqueDTO);
+        estoque.setProduto(produto);
+        return EstoqueRepository.save(estoque);
+    }
+
+    @Override
     public List<Estoque> buscarTodasEstoque() {
         return EstoqueRepository.findAll();
     }

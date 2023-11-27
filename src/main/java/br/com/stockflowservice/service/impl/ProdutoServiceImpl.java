@@ -46,10 +46,9 @@ public class ProdutoServiceImpl implements ProdutoService {
                                     .precoCompra(produtoNovo.getPreco())
                                     .precoVenda(produtoNovo.getPreco())
                                     .quantidade(0)
-                                    .produtoDTO(produtoDTO)
                                     .build();
 
-        estoqueService.criarEstoque(estoqueDTO);
+        estoqueService.criarEstoque(estoqueDTO, produtoNovo);
 
         return produtoNovo;
 
