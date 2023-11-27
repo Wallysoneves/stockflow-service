@@ -7,7 +7,6 @@ import br.com.stockflowservice.domain.dto.ProdutoDTO;
 import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.ProdutoRepository;
 import br.com.stockflowservice.service.CategoriaService;
-import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
 import br.com.stockflowservice.service.component.InjecaoDependencia;
 import org.springframework.beans.factory.annotation.Autowired;
