@@ -9,6 +9,7 @@ import br.com.stockflowservice.service.CategoriaService;
 import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto buscarUmProduto(Long id) {
-        return produtoRepository.findById(id).orElseThrow(() -> new StockFlowException("Produto não encontrada!"));
+        return produtoRepository.findById(id).orElseThrow(() -> new StockFlowException("Produto não encontrada!", HttpStatus.BAD_REQUEST));
     }
 
     @Override
