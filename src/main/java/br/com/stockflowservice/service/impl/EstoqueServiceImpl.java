@@ -7,9 +7,11 @@ import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.EstoqueRepository;
 import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
-import br.com.stockflowservice.service.component.InjecaoDependencia;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.helpers.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,34 +22,34 @@ import java.util.Objects;
 public class EstoqueServiceImpl implements EstoqueService {
 
     @Autowired
-    private EstoqueRepository estoqueRepository;
+    private EstoqueRepository EstoqueRepository;
 
     @Autowired
-    private InjecaoDependencia injecaoDependencia;
+    private ProdutoService produtoService;
 
     @Override
     public Estoque criarEstoque(EstoqueDTO estoqueDTO) {
         Estoque estoque = new Estoque(estoqueDTO);
-        Produto produto = injecaoDependencia.buscarProduto(estoqueDTO.produtoDTO().id());
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
         estoque.setProduto(produto);
-        return estoqueRepository.save(estoque);
+        return EstoqueRepository.save(estoque);
     }
 
     @Override
-    public Estoque criarEstoque(EstoqueDTO estoqueDTO, Produto produto) {
+    public Estoque criarEstoque (EstoqueDTO estoqueDTO, Produto produto) {
         Estoque estoque = new Estoque(estoqueDTO);
         estoque.setProduto(produto);
-        return estoqueRepository.save(estoque);
+        return EstoqueRepository.save(estoque);
     }
 
     @Override
     public List<Estoque> buscarTodasEstoque() {
-        return estoqueRepository.findAll();
+        return EstoqueRepository.findAll();
     }
 
     @Override
     public Estoque buscarUmEstoque(Long id) {
-        return estoqueRepository.findById(id).orElseThrow(() -> new StockFlowException("Estoque não encontrada!"));
+        return EstoqueRepository.findById(id).orElseThrow(() -> new StockFlowException("Estoque não encontrada!"));
     }
 
     @Override
@@ -59,7 +61,7 @@ public class EstoqueServiceImpl implements EstoqueService {
         estoque.setPrecoCompra(estoqueDTO.precoCompra());
         estoque.setPrecoVenda(estoqueDTO.precoVenda());
 
-        Produto produto = injecaoDependencia.buscarProduto(estoqueDTO.produtoDTO().id());
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
 
         log.info("PRODUTO: " + produto.getNome()+ " " + produto.getId());
 
@@ -67,18 +69,18 @@ public class EstoqueServiceImpl implements EstoqueService {
             estoque.setProduto(produto);
         }
 
-        return estoqueRepository.save(estoque);
+        return EstoqueRepository.save(estoque);
     }
 
     @Override
     public void deletarEstoque(Long id) {
         Estoque estoque = this.buscarUmEstoque(id);
-        estoqueRepository.delete(estoque);
+        EstoqueRepository.delete(estoque);
     }
 
     @Override
     public void deletarEstoque(EstoqueDTO estoqueDTO) {
         Estoque estoqueEncontrado = this.buscarUmEstoque(estoqueDTO.id());
-        estoqueRepository.delete(estoqueEncontrado);
+        EstoqueRepository.delete(estoqueEncontrado);
     }
 }
