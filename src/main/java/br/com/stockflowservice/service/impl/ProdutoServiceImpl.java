@@ -1,6 +1,7 @@
 package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Categoria;
+import br.com.stockflowservice.domain.Estoque;
 import br.com.stockflowservice.domain.Produto;
 import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.ProdutoDTO;
@@ -11,6 +12,7 @@ import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
@@ -28,8 +30,9 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private CategoriaService categoriaService;
 
-//    @Autowired
-//    private EstoqueService estoqueService;
+    @Autowired
+    @Lazy
+    private EstoqueService estoqueService;
 
     @Override
     public Produto criarProduto(ProdutoDTO produtoDTO) {
@@ -47,8 +50,6 @@ public class ProdutoServiceImpl implements ProdutoService {
                                             .precoVenda(produtoNovo.getPreco())
                                             .quantidade(0)
                                             .build();
-
-//        estoqueService.criarEstoque(estoqueDTO, produtoNovo);
 
         return produtoNovo;
 

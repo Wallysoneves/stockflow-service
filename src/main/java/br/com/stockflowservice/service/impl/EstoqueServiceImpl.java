@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.helpers.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     private EstoqueRepository EstoqueRepository;
 
     @Autowired
+    @Lazy
     private ProdutoService produtoService;
 
     @Override
