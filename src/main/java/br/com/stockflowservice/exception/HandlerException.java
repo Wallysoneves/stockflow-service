@@ -22,7 +22,10 @@ public class HandlerException extends ResponseEntityExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ResponseEntity<ApiErrorModel> handleCustomException(StockFlowException ex) {
 
-        ApiErrorModel apiErrorModel = new ApiErrorModel(ex.getStatus(), ex.getMessage());
+        ApiErrorModel apiErrorModel = ApiErrorModel.builder()
+                                                   .status(ex.getStatus())
+                                                   .erro(ex.getMessage())
+                                                   .build();
 
         return new ResponseEntity<>(apiErrorModel, HttpStatus.BAD_REQUEST);
     }
@@ -36,7 +39,10 @@ public class HandlerException extends ResponseEntityExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
 
-        ApiErrorModel apiErrorModel = new ApiErrorModel(HttpStatus.valueOf(status.value()), errors);
+        ApiErrorModel apiErrorModel = ApiErrorModel.builder()
+                                                   .status(HttpStatus.valueOf(status.value()))
+                                                   .errors(errors)
+                                                   .build();
 
         return handleExceptionInternal(ex, apiErrorModel, headers, apiErrorModel.getStatus(), request);
     }

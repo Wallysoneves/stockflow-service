@@ -1,5 +1,6 @@
 package br.com.stockflowservice.exception;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 
@@ -8,19 +9,15 @@ import java.util.Collections;
 import java.util.List;
 
 
+@JsonInclude(value = JsonInclude.Include.NON_EMPTY)
 @Getter
 @Setter
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class ApiErrorModel {
 
     private HttpStatus status;
     private List<String> errors;
-
-    public ApiErrorModel(HttpStatus status, String error) {
-        super();
-        this.status = status;
-        errors = Collections.singletonList(error);
-    }
+    private String erro;
 }
