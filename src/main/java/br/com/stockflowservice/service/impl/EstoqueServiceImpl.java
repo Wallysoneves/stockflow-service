@@ -25,12 +25,9 @@ public class EstoqueServiceImpl implements EstoqueService {
     @Autowired
     private EstoqueRepository EstoqueRepository;
 
-    private ProdutoService produtoService;
-
     @Autowired
-    public void setProdutoService(ProdutoService produtoService) {
-        this.produtoService = produtoService;
-    }
+    @Lazy
+    private ProdutoService produtoService;
 
     @Override
     public Estoque criarEstoque(EstoqueDTO estoqueDTO) {
