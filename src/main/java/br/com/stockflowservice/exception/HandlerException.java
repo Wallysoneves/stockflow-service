@@ -24,7 +24,7 @@ public class HandlerException extends ResponseEntityExceptionHandler {
 
         ApiErrorModel apiErrorModel = new ApiErrorModel(ex.getStatus(), ex.getMessage());
 
-        return new ResponseEntity<>(apiErrorModel, ex.getStatus());
+        return new ResponseEntity<>(apiErrorModel, HttpStatus.BAD_REQUEST);
     }
 
     @Override
