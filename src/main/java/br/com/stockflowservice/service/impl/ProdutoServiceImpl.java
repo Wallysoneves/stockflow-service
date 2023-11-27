@@ -67,7 +67,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
         produto.setNome(produtoDTO.nome());
         produto.setDescricao(produtoDTO.descricao());
-        produto.setObservacao(produto.getObservacao());
+        produto.setObservacao(produtoDTO.observacao());
         produto.setPreco(produtoDTO.preco());
         produto.setCodigoBarra(produtoDTO.codigoBarra());
         produto.setDataAlteracao(Objects.nonNull(produtoDTO.dataAlteracao()) ? produtoDTO.dataAlteracao() : LocalDateTime.now());
