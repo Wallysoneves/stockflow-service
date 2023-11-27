@@ -30,9 +30,12 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private CategoriaService categoriaService;
 
-    @Autowired
-    @Lazy
     private EstoqueService estoqueService;
+
+    @Autowired
+    public void setEstoqueService(EstoqueService estoqueService) {
+        this.estoqueService = estoqueService;
+    }
 
     @Override
     public Produto criarProduto(ProdutoDTO produtoDTO) {
@@ -50,6 +53,8 @@ public class ProdutoServiceImpl implements ProdutoService {
                                             .precoVenda(produtoNovo.getPreco())
                                             .quantidade(0)
                                             .build();
+
+        estoqueService.criarEstoque(estoqueDTO, produto);
 
         return produtoNovo;
 
