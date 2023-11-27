@@ -2,10 +2,12 @@ package br.com.stockflowservice.service.impl;
 
 import br.com.stockflowservice.domain.Categoria;
 import br.com.stockflowservice.domain.Produto;
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.ProdutoDTO;
 import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.ProdutoRepository;
 import br.com.stockflowservice.service.CategoriaService;
+import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -26,12 +28,31 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Autowired
     private CategoriaService categoriaService;
 
+    @Autowired
+    private EstoqueService estoqueService;
+
     @Override
     public Produto criarProduto(ProdutoDTO produtoDTO) {
         Produto produto = new Produto(produtoDTO);
+
         Categoria categoria = categoriaService.buscarUmaCategoria(produtoDTO.categoriaDTO().id());
         produto.setCategoria(categoria);
-        return produtoRepository.save(produto);
+
+        Produto produtoNovo = produtoRepository.save(produto);
+
+        EstoqueDTO estoqueDTO = EstoqueDTO.builder()
+                                    .dataEntrada(produtoNovo.getDataCadastro())
+                                    .situacao("I")
+                                    .precoCompra(produtoNovo.getPreco())
+                                    .precoVenda(produtoNovo.getPreco())
+                                    .quantidade(0)
+                                    .produtoDTO(produtoDTO)
+                                    .build();
+
+        estoqueService.criarEstoque(estoqueDTO);
+
+        return produtoNovo;
+
     }
 
     @Override
