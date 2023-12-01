@@ -4,6 +4,7 @@ import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -18,12 +19,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "itens_pedidos")
 public class ItemPedido {
 
     @EmbeddedId
-    @JsonBackReference
+    @JsonIgnore
     private ItemPedidoId id;
 
     @Column(name = "quantidade", nullable = false)

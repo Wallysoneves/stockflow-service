@@ -27,7 +27,7 @@ import java.util.Set;
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_pedido")
     private Long id;
 
@@ -36,7 +36,6 @@ public class Pedido {
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Set<ItemPedido> itensPedidos = new HashSet<>();
 
     @Column(name = "data_inicio", nullable = false)
