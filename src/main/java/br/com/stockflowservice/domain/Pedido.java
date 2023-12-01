@@ -36,7 +36,7 @@ public class Pedido {
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonManagedReference
     private Set<ItemPedido> itensPedidos = new HashSet<>();
 
     @Column(name = "data_inicio", nullable = false)
