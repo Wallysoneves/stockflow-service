@@ -63,7 +63,7 @@ public class EstoqueServiceImpl implements EstoqueService {
 
         Estoque estoque = this.buscarUmEstoque(estoqueDTO.id());
         estoque.setQuantidade(estoqueDTO.quantidade());
-        estoque.setSituacao(estoque.getSituacao());
+        estoque.setSituacao(estoqueDTO.situacao());
         estoque.setPrecoCompra(estoqueDTO.precoCompra());
         estoque.setPrecoVenda(estoqueDTO.precoVenda());
 
