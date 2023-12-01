@@ -16,6 +16,8 @@ public interface EstoqueService {
 
     Estoque buscarUmEstoque(Long id);
 
+    Estoque buscarEstoqueCodigoBarra(Long codigoBarra);
+
     Estoque alterarEstoque(EstoqueDTO Estoque);
 
     void deletarEstoque(Long id);

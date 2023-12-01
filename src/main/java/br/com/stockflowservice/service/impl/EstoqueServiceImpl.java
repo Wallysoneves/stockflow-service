@@ -8,11 +8,9 @@ import br.com.stockflowservice.repository.EstoqueRepository;
 import br.com.stockflowservice.service.EstoqueService;
 import br.com.stockflowservice.service.ProdutoService;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.helpers.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.data.domain.Example;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +21,7 @@ import java.util.Objects;
 public class EstoqueServiceImpl implements EstoqueService {
 
     @Autowired
-    private EstoqueRepository EstoqueRepository;
+    private EstoqueRepository estoqueRepository;
 
     @Autowired
     @Lazy
@@ -34,24 +32,30 @@ public class EstoqueServiceImpl implements EstoqueService {
         Estoque estoque = new Estoque(estoqueDTO);
         Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
         estoque.setProduto(produto);
-        return EstoqueRepository.save(estoque);
+        return estoqueRepository.save(estoque);
     }
 
     @Override
     public Estoque criarEstoque (EstoqueDTO estoqueDTO, Produto produto) {
         Estoque estoque = new Estoque(estoqueDTO);
         estoque.setProduto(produto);
-        return EstoqueRepository.save(estoque);
+        return estoqueRepository.save(estoque);
     }
 
     @Override
     public List<Estoque> buscarTodasEstoque() {
-        return EstoqueRepository.findAll();
+        return estoqueRepository.findAll();
     }
 
     @Override
     public Estoque buscarUmEstoque(Long id) {
-        return EstoqueRepository.findById(id).orElseThrow(() -> new StockFlowException("Estoque não encontrada!"));
+        return estoqueRepository.findById(id).orElseThrow(() -> new StockFlowException("Estoque não encontrada!"));
+    }
+
+    @Override
+    public Estoque buscarEstoqueCodigoBarra(Long codigoBarra) {
+        return estoqueRepository.buscarEstoqueCodigoBarra(codigoBarra)
+                .orElseThrow(() -> new StockFlowException("Estoque não encontrado, por favor valide o código de barra!", HttpStatus.BAD_REQUEST));
     }
 
     @Override
@@ -71,18 +75,18 @@ public class EstoqueServiceImpl implements EstoqueService {
             estoque.setProduto(produto);
         }
 
-        return EstoqueRepository.save(estoque);
+        return estoqueRepository.save(estoque);
     }
 
     @Override
     public void deletarEstoque(Long id) {
         Estoque estoque = this.buscarUmEstoque(id);
-        EstoqueRepository.delete(estoque);
+        estoqueRepository.delete(estoque);
     }
 
     @Override
     public void deletarEstoque(EstoqueDTO estoqueDTO) {
         Estoque estoqueEncontrado = this.buscarUmEstoque(estoqueDTO.id());
-        EstoqueRepository.delete(estoqueEncontrado);
+        estoqueRepository.delete(estoqueEncontrado);
     }
 }

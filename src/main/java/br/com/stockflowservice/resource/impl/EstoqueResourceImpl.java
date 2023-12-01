@@ -50,6 +50,14 @@ public class EstoqueResourceImpl implements EstoqueResource {
     }
 
     @Override
+    @GetMapping(value = "/codigo-barra",
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<Estoque> buscarEstoqueCodigoBarra(@RequestParam("codigoBarra") Long codigoBarra) {
+        return ResponseEntity.ok(estoqueService.buscarEstoqueCodigoBarra(codigoBarra));
+    }
+
+    @Override
     @PutMapping(
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }

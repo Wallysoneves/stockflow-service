@@ -14,6 +14,8 @@ public interface EstoqueResource {
 
     ResponseEntity<Estoque> buscarUmEstoque(Long id);
 
+    ResponseEntity<Estoque> buscarEstoqueCodigoBarra(Long codigoBarra);
+
     ResponseEntity<Estoque> alterarEstoque(EstoqueDTO Estoque);
 
     void deletarEstoque(Long id);
