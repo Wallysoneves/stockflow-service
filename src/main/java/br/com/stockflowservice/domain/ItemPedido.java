@@ -3,6 +3,7 @@ package br.com.stockflowservice.domain;
 import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import org.modelmapper.ModelMapper;
@@ -16,6 +17,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "itens_pedidos")
 public class ItemPedido {
 

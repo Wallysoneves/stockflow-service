@@ -2,6 +2,7 @@ package br.com.stockflowservice.domain;
 
 import br.com.stockflowservice.domain.dto.UsuarioDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "usuarios")
 public class Usuario {
 
