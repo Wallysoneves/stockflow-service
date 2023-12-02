@@ -38,7 +38,7 @@ public class ProdutoServiceImpl implements ProdutoService {
     public Produto criarProduto(ProdutoDTO produtoDTO) {
         Produto produto = new Produto(produtoDTO);
 
-        Categoria categoria = categoriaService.buscarUmaCategoria(produtoDTO.categoriaDTO().id());
+        Categoria categoria = categoriaService.buscarUmaCategoria(produtoDTO.getCategoriaDTO().getId());
         produto.setCategoria(categoria);
 
         Produto produtoNovo = produtoRepository.save(produto);
@@ -86,14 +86,14 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public Produto alterarProduto(ProdutoDTO produtoDTO) {
-        Produto produto = buscarUmProduto(produtoDTO.id());
+        Produto produto = buscarUmProduto(produtoDTO.getId());
 
-        produto.setNome(produtoDTO.nome());
-        produto.setDescricao(produtoDTO.descricao());
-        produto.setObservacao(produtoDTO.observacao());
-        produto.setPreco(produtoDTO.preco());
-        produto.setCodigoBarra(produtoDTO.codigoBarra());
-        produto.setDataAlteracao(Objects.nonNull(produtoDTO.dataAlteracao()) ? produtoDTO.dataAlteracao() : LocalDateTime.now());
+        produto.setNome(produtoDTO.getNome());
+        produto.setDescricao(produtoDTO.getDescricao());
+        produto.setObservacao(produtoDTO.getObservacao());
+        produto.setPreco(produtoDTO.getPreco());
+        produto.setCodigoBarra(produtoDTO.getCodigoBarra());
+        produto.setDataAlteracao(Objects.nonNull(produtoDTO.getDataAlteracao()) ? produtoDTO.getDataAlteracao() : LocalDateTime.now());
 
         return produtoRepository.save(produto);
 
@@ -107,7 +107,7 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public void deletarProduto(ProdutoDTO produto) {
-        Produto produtoEncontrado = this.buscarUmProduto(produto.id());
+        Produto produtoEncontrado = this.buscarUmProduto(produto.getId());
         produtoRepository.delete(produtoEncontrado);
     }
 }

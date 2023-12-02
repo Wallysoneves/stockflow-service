@@ -35,7 +35,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido alterarPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = this.buscarUmPedido(pedidoDTO.id());
+        Pedido pedido = this.buscarUmPedido(pedidoDTO.getId());
             return PedidoRepository.save(pedido);
     }
 
@@ -47,7 +47,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public void deletarPedido(PedidoDTO pedido) {
-        Pedido pedidoEncontrado = this.buscarUmPedido(pedido.id());
+        Pedido pedidoEncontrado = this.buscarUmPedido(pedido.getId());
         PedidoRepository.delete(pedidoEncontrado);
     }
 }

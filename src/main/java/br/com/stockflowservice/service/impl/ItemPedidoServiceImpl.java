@@ -38,7 +38,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
 
     @Override
     public ItemPedido alterarItemPedido(ItemPedidoDTO itemPedidoDTO) {
-        ItemPedido itemPedido = this.buscarUmItemPedido(itemPedidoDTO.id());
+        ItemPedido itemPedido = this.buscarUmItemPedido(itemPedidoDTO.getId());
         return ItemPedidoRepository.save(itemPedido);
 
     }
@@ -52,7 +52,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     @Override
     public void deletarItemPedido(ItemPedidoDTO itemPedidoDTO) {
 
-        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedidoDTO.id());
+        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedidoDTO.getId());
         ItemPedidoRepository.delete(itemPedidoEncontrado);
     }
 }

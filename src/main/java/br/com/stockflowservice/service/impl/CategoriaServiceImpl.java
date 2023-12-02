@@ -42,9 +42,9 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Categoria alterarCategoria(CategoriaDTO categoriaDTO) {
-        Categoria categoria = this.buscarUmaCategoria(categoriaDTO.id());
-        categoria.setNome(categoriaDTO.nome());
-        categoria.setObservacao(categoriaDTO.observacao());
+        Categoria categoria = this.buscarUmaCategoria(categoriaDTO.getId());
+        categoria.setNome(categoriaDTO.getNome());
+        categoria.setObservacao(categoriaDTO.getObservacao());
 
         return categoriaRepository.save(categoria);
     }

@@ -30,7 +30,7 @@ public class EstoqueServiceImpl implements EstoqueService {
     @Override
     public Estoque criarEstoque(EstoqueDTO estoqueDTO) {
         Estoque estoque = new Estoque(estoqueDTO);
-        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.getProdutoDTO().getId());
         estoque.setProduto(produto);
         return estoqueRepository.save(estoque);
     }
@@ -61,13 +61,13 @@ public class EstoqueServiceImpl implements EstoqueService {
     @Override
     public Estoque alterarEstoque(EstoqueDTO estoqueDTO) {
 
-        Estoque estoque = this.buscarUmEstoque(estoqueDTO.id());
-        estoque.setQuantidade(estoqueDTO.quantidade());
-        estoque.setSituacao(estoqueDTO.situacao());
-        estoque.setPrecoCompra(estoqueDTO.precoCompra());
-        estoque.setPrecoVenda(estoqueDTO.precoVenda());
+        Estoque estoque = this.buscarUmEstoque(estoqueDTO.getId());
+        estoque.setQuantidade(estoqueDTO.getQuantidade());
+        estoque.setSituacao(estoqueDTO.getSituacao());
+        estoque.setPrecoCompra(estoqueDTO.getPrecoCompra());
+        estoque.setPrecoVenda(estoqueDTO.getPrecoVenda());
 
-        Produto produto = produtoService.buscarUmProduto(estoqueDTO.produtoDTO().id());
+        Produto produto = produtoService.buscarUmProduto(estoqueDTO.getProdutoDTO().getId());
 
         log.info("PRODUTO: " + produto.getNome()+ " " + produto.getId());
 
@@ -86,7 +86,7 @@ public class EstoqueServiceImpl implements EstoqueService {
 
     @Override
     public void deletarEstoque(EstoqueDTO estoqueDTO) {
-        Estoque estoqueEncontrado = this.buscarUmEstoque(estoqueDTO.id());
+        Estoque estoqueEncontrado = this.buscarUmEstoque(estoqueDTO.getId());
         estoqueRepository.delete(estoqueEncontrado);
     }
 }

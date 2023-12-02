@@ -54,7 +54,7 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     @Override
     public void deletarUsuario(UsuarioDTO usuarioDTO) {
-        Usuario usuarioEncontrado = this.buscarUmUsuario(usuarioDTO.id());
+        Usuario usuarioEncontrado = this.buscarUmUsuario(usuarioDTO.getId());
         UsuarioRepository.delete(usuarioEncontrado);
     }
 }

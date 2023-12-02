@@ -54,13 +54,13 @@ public class Produto {
     private String observacao;
 
     public Produto (ProdutoDTO produtoDTO) {
-        this.id = produtoDTO.id();
-        this.nome = produtoDTO.nome();
-        this.descricao = produtoDTO.descricao();
-        this.preco = produtoDTO.preco();
-        this.codigoBarra = produtoDTO.codigoBarra();
-        this.dataCadastro = Objects.nonNull(produtoDTO.dataCadastro()) ? produtoDTO.dataCadastro() : LocalDateTime.now();
-        this.observacao = produtoDTO.observacao();
+        this.id = produtoDTO.getId();
+        this.nome = produtoDTO.getNome();
+        this.descricao = produtoDTO.getDescricao();
+        this.preco = produtoDTO.getPreco();
+        this.codigoBarra = produtoDTO.getCodigoBarra();
+        this.dataCadastro = Objects.nonNull(produtoDTO.getDataCadastro()) ? produtoDTO.getDataCadastro() : LocalDateTime.now();
+        this.observacao = produtoDTO.getObservacao();
     }
 
 }

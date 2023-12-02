@@ -44,11 +44,11 @@ public class Estoque {
     private String situacao;
 
     public Estoque (EstoqueDTO estoqueDTO) {
-        this.id = estoqueDTO.id();
-        this.quantidade = estoqueDTO.quantidade();
-        this.dataEntrada = Objects.nonNull(estoqueDTO.dataEntrada()) ? estoqueDTO.dataEntrada() : LocalDateTime.now();
-        this.precoCompra = estoqueDTO.precoCompra();
-        this.precoVenda = estoqueDTO.precoVenda();
-        this.situacao = estoqueDTO.situacao();
+        this.id = estoqueDTO.getId();
+        this.quantidade = estoqueDTO.getQuantidade();
+        this.dataEntrada = Objects.nonNull(estoqueDTO.getDataEntrada()) ? estoqueDTO.getDataEntrada() : LocalDateTime.now();
+        this.precoCompra = estoqueDTO.getPrecoCompra();
+        this.precoVenda = estoqueDTO.getPrecoVenda();
+        this.situacao = estoqueDTO.getSituacao();
     }
 }

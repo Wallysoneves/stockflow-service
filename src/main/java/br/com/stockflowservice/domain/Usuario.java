@@ -47,13 +47,13 @@ public class Usuario {
 
     public Usuario (UsuarioDTO usuarioDTO) {
 
-        this.id = usuarioDTO.id();
-        this.nome = usuarioDTO.nome();
-        this.email = usuarioDTO.email();
-        this.login = usuarioDTO.login();
-        this.senha = usuarioDTO.senha();
+        this.id = usuarioDTO.getId();
+        this.nome = usuarioDTO.getNome();
+        this.email = usuarioDTO.getEmail();
+        this.login = usuarioDTO.getLogin();
+        this.senha = usuarioDTO.getSenha();
         this.dataCadastro = LocalDateTime.now();
-        this.dataNascimento = usuarioDTO.dataNascimento();
+        this.dataNascimento = usuarioDTO.getDataNascimento();
         this.dataAlteracao = LocalDateTime.now();
     }
 

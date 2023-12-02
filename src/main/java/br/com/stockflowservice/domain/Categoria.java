@@ -45,10 +45,10 @@ public class Categoria {
     private List<Produto> produtos = new ArrayList<>();
 
     public Categoria (CategoriaDTO categoriaDTO) {
-        this.id = categoriaDTO.id();
-        this.nome = categoriaDTO.nome();
-        this.dataCadastro = Objects.nonNull(categoriaDTO.dataCadastro()) ? categoriaDTO.dataCadastro() : LocalDateTime.now();
-        this.observacao = categoriaDTO.observacao();
+        this.id = categoriaDTO.getId();
+        this.nome = categoriaDTO.getNome();
+        this.dataCadastro = Objects.nonNull(categoriaDTO.getDataCadastro()) ? categoriaDTO.getDataCadastro() : LocalDateTime.now();
+        this.observacao = categoriaDTO.getObservacao();
         this.produtos = new ArrayList<>();
     }
 
