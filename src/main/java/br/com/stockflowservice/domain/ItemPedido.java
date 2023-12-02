@@ -1,5 +1,8 @@
 package br.com.stockflowservice.domain;
 import br.com.stockflowservice.domain.id.ItemPedidoId;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +19,7 @@ import java.math.BigDecimal;
 public class ItemPedido {
 
     @EmbeddedId
+    @JsonIgnore
     private ItemPedidoId id;
 
     @Column(name = "quantidade", nullable = false)

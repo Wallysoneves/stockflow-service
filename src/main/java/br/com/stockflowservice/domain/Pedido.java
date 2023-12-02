@@ -1,6 +1,6 @@
 package br.com.stockflowservice.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,11 +16,12 @@ import java.util.Set;
 @AllArgsConstructor
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "pedidos")
 public class Pedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_pedido")
     private Long id;
 
@@ -29,7 +30,6 @@ public class Pedido {
     private Usuario usuario;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JsonIgnore
     private Set<ItemPedido> itensPedidos = new HashSet<>();
 
     @Column(name = "data_inicio", nullable = false)

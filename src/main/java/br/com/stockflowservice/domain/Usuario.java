@@ -1,6 +1,7 @@
 package br.com.stockflowservice.domain;
 
 import br.com.stockflowservice.domain.dto.UsuarioDTO;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "usuarios")
 public class Usuario {
 
