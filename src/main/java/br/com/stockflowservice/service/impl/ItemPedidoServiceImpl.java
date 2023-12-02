@@ -21,7 +21,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
 
     @Override
     public ItemPedido criarItemPedido(ItemPedidoDTO itemPedidoDTO) {
-        ItemPedido itemPedido = ItemPedido.convert(itemPedidoDTO);
+        ItemPedido itemPedido = new ItemPedido();
         return ItemPedidoRepository.save(itemPedido);
     }
 
@@ -32,7 +32,7 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
 
     @Override
     public ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id) {
-        ItemPedidoId itemPedidoId = ItemPedidoId.convert(id);
+        ItemPedidoId itemPedidoId = new ItemPedidoId();
         return ItemPedidoRepository.findById(itemPedidoId).orElseThrow(() -> new StockFlowException("ItemPedido não encontrada!"));
     }
 

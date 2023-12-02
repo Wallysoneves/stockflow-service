@@ -1,5 +1,6 @@
 package br.com.stockflowservice.domain.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Builder;
 
 import java.math.BigDecimal;
@@ -12,5 +13,5 @@ public record EstoqueDTO( Long id
                         , BigDecimal precoCompra
                         , BigDecimal precoVenda
                         , String situacao
-                        , ProdutoDTO produtoDTO
+                        , @Schema(name = "produto") ProdutoDTO produtoDTO
                          ) {}

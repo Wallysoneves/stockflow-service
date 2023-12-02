@@ -1,5 +1,7 @@
 package br.com.stockflowservice.domain.dto;
 
-public record ItemPedidoIdDTO(ProdutoDTO produtoDTO
-                            , PedidoDTO pedidoDTO
+import io.swagger.v3.oas.annotations.media.Schema;
+
+public record ItemPedidoIdDTO(@Schema(name = "produto") ProdutoDTO produtoDTO
+                            , @Schema(name = "pedido") PedidoDTO pedidoDTO
                               ) {}

@@ -1,17 +1,11 @@
 package br.com.stockflowservice.domain;
 
 import br.com.stockflowservice.domain.dto.UsuarioDTO;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
-import org.modelmapper.ModelMapper;
-import org.modelmapper.PropertyMap;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter

@@ -19,7 +19,7 @@ public class PedidoServiceImpl implements PedidoService {
 
     @Override
     public Pedido criarPedido(PedidoDTO pedidoDTO) {
-        Pedido pedido = Pedido.convert(pedidoDTO);
+        Pedido pedido = new Pedido();
         return PedidoRepository.save(pedido);
     }
 
