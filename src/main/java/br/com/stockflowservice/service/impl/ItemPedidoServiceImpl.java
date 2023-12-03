@@ -1,14 +1,13 @@
 package br.com.stockflowservice.service.impl;
 
-import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.Item;
 import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
-import br.com.stockflowservice.domain.id.ItemPedidoId;
+import br.com.stockflowservice.domain.id.ItemId;
 import br.com.stockflowservice.exception.StockFlowException;
 import br.com.stockflowservice.repository.ItemPedidoRepository;
 import br.com.stockflowservice.service.ItemPedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,39 +19,39 @@ public class ItemPedidoServiceImpl implements ItemPedidoService {
     private ItemPedidoRepository ItemPedidoRepository;
 
     @Override
-    public ItemPedido criarItemPedido(ItemPedidoDTO itemPedidoDTO) {
-        ItemPedido itemPedido = new ItemPedido();
-        return ItemPedidoRepository.save(itemPedido);
+    public Item criarItemPedido(ItemPedidoDTO itemPedidoDTO) {
+        Item item = new Item();
+        return ItemPedidoRepository.save(item);
     }
 
     @Override
-    public List<ItemPedido> buscarTodasItemPedido() {
+    public List<Item> buscarTodasItemPedido() {
         return ItemPedidoRepository.findAll();
     }
 
     @Override
-    public ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id) {
-        ItemPedidoId itemPedidoId = new ItemPedidoId();
-        return ItemPedidoRepository.findById(itemPedidoId).orElseThrow(() -> new StockFlowException("ItemPedido não encontrada!"));
+    public Item buscarUmItemPedido(ItemPedidoIdDTO id) {
+        ItemId itemId = new ItemId();
+        return ItemPedidoRepository.findById(itemId).orElseThrow(() -> new StockFlowException("ItemPedido não encontrada!"));
     }
 
     @Override
-    public ItemPedido alterarItemPedido(ItemPedidoDTO itemPedidoDTO) {
-        ItemPedido itemPedido = this.buscarUmItemPedido(itemPedidoDTO.getId());
-        return ItemPedidoRepository.save(itemPedido);
+    public Item alterarItemPedido(ItemPedidoDTO itemPedidoDTO) {
+        Item item = this.buscarUmItemPedido(itemPedidoDTO.getId());
+        return ItemPedidoRepository.save(item);
 
     }
 
     @Override
     public void deletarItemPedido(ItemPedidoIdDTO id) {
-        ItemPedido itemPedido = this.buscarUmItemPedido(id);
-        ItemPedidoRepository.delete(itemPedido);
+        Item item = this.buscarUmItemPedido(id);
+        ItemPedidoRepository.delete(item);
     }
 
     @Override
     public void deletarItemPedido(ItemPedidoDTO itemPedidoDTO) {
 
-        ItemPedido itemPedidoEncontrado = this.buscarUmItemPedido(itemPedidoDTO.getId());
-        ItemPedidoRepository.delete(itemPedidoEncontrado);
+        Item itemEncontrado = this.buscarUmItemPedido(itemPedidoDTO.getId());
+        ItemPedidoRepository.delete(itemEncontrado);
     }
 }

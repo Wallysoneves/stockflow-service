@@ -26,8 +26,8 @@ import java.util.Objects;
 public class Categoria {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_categoria")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "nome", length = 60, nullable = false)
@@ -40,16 +40,11 @@ public class Categoria {
     @Column(name = "observacao")
     private String observacao;
 
-    @OneToMany(mappedBy = "categoria", fetch = FetchType.LAZY)
-    @JsonBackReference
-    private List<Produto> produtos = new ArrayList<>();
-
     public Categoria (CategoriaDTO categoriaDTO) {
         this.id = categoriaDTO.getId();
         this.nome = categoriaDTO.getNome();
         this.dataCadastro = Objects.nonNull(categoriaDTO.getDataCadastro()) ? categoriaDTO.getDataCadastro() : LocalDateTime.now();
         this.observacao = categoriaDTO.getObservacao();
-        this.produtos = new ArrayList<>();
     }
 
 }

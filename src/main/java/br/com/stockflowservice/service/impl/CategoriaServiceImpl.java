@@ -65,7 +65,7 @@ public class CategoriaServiceImpl implements CategoriaService {
 
     @Override
     public Categoria buscarCategoriaNome(String nomeCategoria) {
-        return categoriaRepository.findByNome(nomeCategoria)
+        return categoriaRepository.findByNomeIgnoreCase(nomeCategoria)
                 .orElseThrow(() -> new StockFlowException("Categoria não encontrada!", HttpStatus.NOT_FOUND));
     }
 }

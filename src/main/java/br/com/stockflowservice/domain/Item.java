@@ -1,8 +1,5 @@
 package br.com.stockflowservice.domain;
-import br.com.stockflowservice.domain.id.ItemPedidoId;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import br.com.stockflowservice.domain.id.ItemId;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,12 +12,11 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 
 @Entity
-@Table(name = "itens_pedidos")
-public class ItemPedido {
+@Table(name = "itens")
+public class Item {
 
     @EmbeddedId
-    @JsonIgnore
-    private ItemPedidoId id;
+    private ItemId id;
 
     @Column(name = "quantidade", nullable = false)
     private Integer quantidade;

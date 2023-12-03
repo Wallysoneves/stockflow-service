@@ -23,7 +23,7 @@ import java.util.*;
 public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_produto")
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "nome", length = 254, nullable = false)
@@ -32,9 +32,8 @@ public class Produto {
     @Column(name = "descricao", nullable = false)
     private String descricao;
 
-    @JoinColumn(name = "id_categoria", referencedColumnName = "id_categoria")
+    @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonManagedReference
     private Categoria categoria;
 
     @Column(name = "preco", nullable = false)

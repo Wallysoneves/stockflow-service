@@ -13,7 +13,7 @@ public interface EstoqueRepository extends JpaRepository<Estoque, Long> {
 
     @Query(value =  "SELECT E.*                                                     " +
                     "   FROM ESTOQUES E                                             " +
-                    " INNER JOIN PRODUTOS P ON (P.ID_PRODUTO = E.ID_PRODUTO)        " +
+                    " INNER JOIN PRODUTOS P ON (P.ID = E.PRODUTO_ID)        " +
                     " WHERE P.CODIGO_BARRA = :codigoBarra                           ", nativeQuery = true)
     Optional<Estoque> buscarEstoqueCodigoBarra(@Param("codigoBarra") Long codigoBarra);
 }

@@ -1,21 +1,20 @@
 package br.com.stockflowservice.service;
 
-import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.Item;
 import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
-import br.com.stockflowservice.domain.id.ItemPedidoId;
 
 import java.util.List;
 
 public interface ItemPedidoService {
 
-    ItemPedido criarItemPedido(ItemPedidoDTO ItemPedido);
+    Item criarItemPedido(ItemPedidoDTO ItemPedido);
 
-    List<ItemPedido> buscarTodasItemPedido();
+    List<Item> buscarTodasItemPedido();
 
-    ItemPedido buscarUmItemPedido(ItemPedidoIdDTO id);
+    Item buscarUmItemPedido(ItemPedidoIdDTO id);
 
-    ItemPedido alterarItemPedido(ItemPedidoDTO ItemPedido);
+    Item alterarItemPedido(ItemPedidoDTO ItemPedido);
 
     void deletarItemPedido(ItemPedidoIdDTO id);
 

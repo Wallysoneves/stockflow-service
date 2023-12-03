@@ -1,9 +1,8 @@
 package br.com.stockflowservice.resource.impl;
 
-import br.com.stockflowservice.domain.ItemPedido;
+import br.com.stockflowservice.domain.Item;
 import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.dto.ItemPedidoIdDTO;
-import br.com.stockflowservice.domain.id.ItemPedidoId;
 import br.com.stockflowservice.resource.ItemPedidoResource;
 import br.com.stockflowservice.service.ItemPedidoService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -31,7 +30,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<ItemPedido> criarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
+    public ResponseEntity<Item> criarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
         return ResponseEntity.ok(itemPedidoService.criarItemPedido(itemPedido));
     }
 
@@ -39,7 +38,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<List<ItemPedido>> buscarTodasItemPedido() {
+    public ResponseEntity<List<Item>> buscarTodasItemPedido() {
         return ResponseEntity.ok(itemPedidoService.buscarTodasItemPedido());
     }
 
@@ -47,7 +46,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     @GetMapping(value = "/id",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<ItemPedido> buscarUmItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) {
+    public ResponseEntity<Item> buscarUmItemPedido(@Valid @RequestBody ItemPedidoIdDTO id) {
         return ResponseEntity.ok(itemPedidoService.buscarUmItemPedido(id));
     }
 
@@ -56,7 +55,7 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
             consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
-    public ResponseEntity<ItemPedido> alterarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
+    public ResponseEntity<Item> alterarItemPedido(@Valid @RequestBody ItemPedidoDTO itemPedido) {
         return ResponseEntity.ok(itemPedidoService.alterarItemPedido(itemPedido));
     }
 

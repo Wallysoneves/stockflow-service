@@ -6,8 +6,6 @@ import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.HashSet;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -22,18 +20,18 @@ public class Pedido {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_pedido")
+    @Column(name = "id")
     private Long id;
 
-    @JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+    @Column(name = "numero", unique = true)
+    private Long numeroPedido;
+
+    @JoinColumn(name = "usuario_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private Set<ItemPedido> itensPedidos = new HashSet<>();
-
-    @Column(name = "data_inicio", nullable = false)
-    private LocalDateTime dataInicio;
+    @Column(name = "data_geracao", nullable = false)
+    private LocalDateTime dataGeracao;
 
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
