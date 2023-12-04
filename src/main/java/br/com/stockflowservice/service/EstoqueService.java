@@ -15,6 +15,7 @@ public interface EstoqueService {
     List<Estoque> buscarTodasEstoque();
 
     Estoque buscarUmEstoque(Long id);
+    Estoque buscarUmEstoque(Produto produto);
 
     Estoque buscarEstoqueCodigoBarra(Long codigoBarra);
 

@@ -53,6 +53,11 @@ public class EstoqueServiceImpl implements EstoqueService {
     }
 
     @Override
+    public Estoque buscarUmEstoque(Produto produto) {
+        return estoqueRepository.findByProduto(produto).orElseThrow(() -> new StockFlowException("Estoque não encontrado, não é possivel continuar", HttpStatus.BAD_REQUEST));
+    }
+
+    @Override
     public Estoque buscarEstoqueCodigoBarra(Long codigoBarra) {
         return estoqueRepository.buscarEstoqueCodigoBarra(codigoBarra)
                 .orElseThrow(() -> new StockFlowException("Estoque não encontrado, por favor valide o código de barra!", HttpStatus.BAD_REQUEST));
