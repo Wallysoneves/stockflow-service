@@ -102,6 +102,12 @@ public class ProdutoServiceImpl implements ProdutoService {
     @Override
     public void deletarProduto(Long id) {
         Produto produto = this.buscarUmProduto(id);
+        Estoque estoque = estoqueService.buscarUmEstoque(produto);
+
+        if (estoque.getQuantidade() > 0) {
+            throw new StockFlowException("Esse produto possui estoque, é preciso dar baixa no estoque para excluir o produto!", HttpStatus.BAD_REQUEST);
+        }
+        estoqueService.deletarEstoque(estoque.getId());
         produtoRepository.delete(produto);
     }
 
