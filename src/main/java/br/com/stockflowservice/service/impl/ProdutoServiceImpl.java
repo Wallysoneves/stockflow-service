@@ -64,9 +64,8 @@ public class ProdutoServiceImpl implements ProdutoService {
 
     @Override
     public List<Produto> buscarCampoPesquisa (String texto) {
-        List<Produto> produtos = new ArrayList<>();
 
-        produtos.addAll(produtoRepository.buscarCampoPesquisa(texto).orElse(new ArrayList<>()));
+        List<Produto> produtos = new ArrayList<>(produtoRepository.buscarCampoPesquisa(texto).orElse(new ArrayList<>()));
 
         String textSemLetra = texto.replaceAll("\\D", "");
 

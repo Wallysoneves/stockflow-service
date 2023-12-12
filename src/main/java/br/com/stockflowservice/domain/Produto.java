@@ -57,6 +57,7 @@ public class Produto {
         this.nome = produtoDTO.getNome();
         this.descricao = produtoDTO.getDescricao();
         this.preco = produtoDTO.getPreco();
+        this.categoria = new Categoria(produtoDTO.getCategoriaDTO());
         this.codigoBarra = produtoDTO.getCodigoBarra();
         this.dataCadastro = Objects.nonNull(produtoDTO.getDataCadastro()) ? produtoDTO.getDataCadastro() : LocalDateTime.now();
         this.observacao = produtoDTO.getObservacao();

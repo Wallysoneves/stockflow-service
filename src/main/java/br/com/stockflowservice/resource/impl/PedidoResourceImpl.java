@@ -1,6 +1,8 @@
 package br.com.stockflowservice.resource.impl;
 
+import br.com.stockflowservice.domain.Estoque;
 import br.com.stockflowservice.domain.Pedido;
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.PedidoDTO;
 import br.com.stockflowservice.resource.PedidoResource;
 import br.com.stockflowservice.service.PedidoService;

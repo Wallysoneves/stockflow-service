@@ -1,5 +1,6 @@
 package br.com.stockflowservice.domain;
 
+import br.com.stockflowservice.domain.dto.PedidoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -30,7 +31,7 @@ public class Pedido {
     @ManyToOne(fetch = FetchType.LAZY)
     private Usuario usuario;
 
-    @Column(name = "data_geracao", nullable = false)
+    @Column(name = "data_geracao")
     private LocalDateTime dataGeracao;
 
     @Column(name = "valor_total")
@@ -38,4 +39,13 @@ public class Pedido {
 
     @Column(name = "situacao", length = 1)
     private String situacao;
+
+    public Pedido (PedidoDTO pedidoDTO) {
+        this.id = pedidoDTO.getId();
+        this.numeroPedido = pedidoDTO.getNumeroPedido();
+        this.dataGeracao = LocalDateTime.now();
+        this.usuario = new Usuario(pedidoDTO.getUsuarioDTO());
+        this.situacao = pedidoDTO.getSituacao();
+        this.valorTotal = pedidoDTO.getValorTotal();
+    }
 }

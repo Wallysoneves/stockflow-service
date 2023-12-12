@@ -21,6 +21,8 @@ public class EstoqueDTO {
 
     private Integer quantidade;
 
+    private Long quantidadeSelecionada;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime dataEntrada;
 

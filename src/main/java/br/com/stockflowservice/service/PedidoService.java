@@ -1,6 +1,8 @@
 package br.com.stockflowservice.service;
 
+import br.com.stockflowservice.domain.Estoque;
 import br.com.stockflowservice.domain.Pedido;
+import br.com.stockflowservice.domain.dto.EstoqueDTO;
 import br.com.stockflowservice.domain.dto.PedidoDTO;
 
 import java.util.List;

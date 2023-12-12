@@ -2,12 +2,10 @@ package br.com.stockflowservice.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -18,12 +16,10 @@ import java.util.Set;
 public class PedidoDTO {
 
     private Long id;
+    private Long numeroPedido;
 
     @JsonProperty("usuario")
     private UsuarioDTO usuarioDTO;
-
-    @JsonProperty("itemPedido")
-    private Set<ItemPedidoDTO> itemPedidoDTOS;
 
     private LocalDateTime dataInicio;
 

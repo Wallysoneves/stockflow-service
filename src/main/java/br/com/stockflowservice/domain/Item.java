@@ -1,4 +1,5 @@
 package br.com.stockflowservice.domain;
+import br.com.stockflowservice.domain.dto.ItemPedidoDTO;
 import br.com.stockflowservice.domain.id.ItemId;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,4 +27,13 @@ public class Item {
 
     @Column(name = "total_item", nullable = false)
     private BigDecimal total;
+
+    public Item(ItemPedidoDTO itemPedidoDTO) {
+
+        this.id = new ItemId(itemPedidoDTO.getId());
+
+        this.precoUnitario = itemPedidoDTO.getPrecoUnitario();
+        this.quantidade = itemPedidoDTO.getQuantidade();
+        this.total = itemPedidoDTO.getTotal();
+    }
 }

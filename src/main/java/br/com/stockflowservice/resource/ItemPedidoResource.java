@@ -11,6 +11,8 @@ public interface ItemPedidoResource {
 
     ResponseEntity<Item> criarItemPedido(ItemPedidoDTO ItemPedido);
 
+    ResponseEntity<List<Item>> criarItemPedidos(List<ItemPedidoDTO> ItensPedidos);
+
     ResponseEntity<List<Item>> buscarTodasItemPedido();
 
     ResponseEntity<Item> buscarUmItemPedido(ItemPedidoIdDTO id);

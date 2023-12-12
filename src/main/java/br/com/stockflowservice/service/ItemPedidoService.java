@@ -9,6 +9,7 @@ import java.util.List;
 public interface ItemPedidoService {
 
     Item criarItemPedido(ItemPedidoDTO ItemPedido);
+    List<Item> criarItemPedidos(List<ItemPedidoDTO> ItensPedidos);
 
     List<Item> buscarTodasItemPedido();
 

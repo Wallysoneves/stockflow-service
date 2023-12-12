@@ -35,6 +35,15 @@ public class ItemPedidoResourceImpl implements ItemPedidoResource {
     }
 
     @Override
+    @PostMapping(value = "varios",
+            consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+            produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
+    )
+    public ResponseEntity<List<Item>> criarItemPedidos(@RequestBody List<ItemPedidoDTO> ItensPedidos) {
+        return ResponseEntity.ok(itemPedidoService.criarItemPedidos(ItensPedidos));
+    }
+
+    @Override
     @GetMapping(value = "/todos",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE }
     )
